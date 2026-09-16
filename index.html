@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vivasso Creators</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,7 +64,8 @@
   }
   .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:14px}
   .brand{display:flex;align-items:center;text-decoration:none}
-  .brand img{height:42px;width:auto;display:block}
+  .brand img{height:42px;width:auto;display:block;opacity:0;transition:opacity .3s ease}
+  .nav[data-scrolled="true"] .brand img{opacity:1}
   .brand-word{font-family:var(--font-display);font-weight:700;font-size:21px;
     background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .brand-sub{font-size:9.5px;letter-spacing:.22em;color:var(--ink-on-dark-soft);font-weight:700}
@@ -133,10 +129,10 @@
     pointer-events:none;
   }
   .hero-inner{position:relative;display:flex;flex-direction:column;align-items:center;
-    text-align:center;gap:22px;max-width:620px;margin-inline:auto}
+    text-align:center;gap:22px;max-width:760px;margin-inline:auto}
   .hero-logo{height:58px;width:auto}
   .hero h1{font-size:clamp(28px,4vw,42px);font-weight:600}
-  .hero .lede{font-size:17px;color:var(--ink-on-dark-soft);max-width:640px}
+  .hero .lede{font-size:17px;color:var(--ink-on-dark-soft);max-width:720px}
   .lede-mobile{display:none}
   @media (max-width:600px){
     .lede-desktop{display:none}
@@ -368,8 +364,6 @@
   .divider.on-dark{background:var(--bg-dark)}
   .divider svg{width:100%;height:34px;display:block}
 </style>
-</head>
-<body>
 
 <nav class="nav">
   <div class="wrap nav-inner">
@@ -402,17 +396,47 @@
 <header class="hero" id="hero">
   <div class="wrap hero-inner">
     <img class="hero-logo" src="assets/vivasso-logo.png" alt="Vivasso Creators">
-    <h1>O match entre marcas e criadores começa aqui</h1>
+    <h1>O match entre marcas e creators começa aqui</h1>
     <p class="lede">
-      <span class="lede-desktop">Marcas publicam campanhas, criadores dão o match,<br>e a parceria acontece sem DM perdida, planilha ou perfil garimpado um por um.</span>
-      <span class="lede-mobile">Marcas publicam campanhas,<br>criadores dão o match, e a parceria acontece<br>sem DM perdida, planilha ou perfil garimpado.</span>
+      <span class="lede-desktop">Marcas publicam a campanha, creators se inscrevem e a marca escolhe o match ideal.<br>A parceria acontece sem DM perdida, planilha ou perfil garimpado.</span>
+      <span class="lede-mobile">Marcas publicam a campanha, creators<br>se inscrevem e a marca escolhe o match<br>ideal, sem DM perdida, planilha ou perfil garimpado.</span>
     </p>
     <div class="hero-ctas">
-      <a class="btn btn-grad" href="#contato" data-tipo="marca">Quero participar como marca</a>
-      <a class="btn btn-ghost-dark" href="#contato" data-tipo="criadora">Quero participar como criador</a>
+      <a class="btn btn-grad" href="#contato">Quero me inscrever</a>
     </div>
   </div>
 </header>
+
+<div class="divider on-dark"><svg viewBox="0 0 1180 34" preserveAspectRatio="none"><path d="M0 20C300 2 880 2 1180 16" stroke="url(#gd1)" stroke-width="1.5" fill="none"/><defs><linearGradient id="gd1" x1="0" y1="0" x2="1180" y2="0"><stop stop-color="#4E7FE0" stop-opacity=".5"/><stop offset=".4" stop-color="#8253F0" stop-opacity=".5"/><stop offset=".7" stop-color="#E3529A" stop-opacity=".5"/><stop offset="1" stop-color="#FFB238" stop-opacity=".5"/></linearGradient></defs></svg></div>
+
+<section class="section-light" id="sobre">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" style="color:var(--violet)">O que é a Vivasso Creators</span>
+      <h2>Uma rede social só para marcas e creators de conteúdo</h2>
+      <p class="lede">A Vivasso Creators é um aplicativo que conecta marcas a creators de conteúdo: cada proposta, aceite e conversa tem lugar certo, sem depender de mensagem direta ou planilha.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 5h16M4 12h10M4 19h13"/></svg></div>
+        <h3>Proposta publicada, não perdida</h3>
+        <p>A marca publica a campanha no aplicativo, paga ou por permuta, e os creators convidados veem e aceitam direto por lá.</p>
+      </div>
+      <div class="pillar">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21l2-7.5L2 9h7z"/></svg></div>
+        <h3>Vagas limitadas, sem bagunça</h3>
+        <p>Proposta com vagas limitadas? Qualquer creator pode se candidatar, a qualquer momento. Quem escolhe os creators da parceria é sempre a marca.</p>
+      </div>
+      <div class="pillar">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <h3>Organização do começo ao fim</h3>
+        <p>Toda parceria tem contrato digital, prazos e regras claras, para marca e creator saberem exatamente o que esperar um do outro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><svg viewBox="0 0 1180 34" preserveAspectRatio="none"><path d="M0 20C300 2 880 2 1180 16" stroke="url(#gd1b)" stroke-width="1.5" fill="none"/><defs><linearGradient id="gd1b" x1="0" y1="0" x2="1180" y2="0"><stop stop-color="#4E7FE0" stop-opacity=".5"/><stop offset=".4" stop-color="#8253F0" stop-opacity=".5"/><stop offset=".7" stop-color="#E3529A" stop-opacity=".5"/><stop offset="1" stop-color="#FFB238" stop-opacity=".5"/></linearGradient></defs></svg></div>
 
 <section class="section-dark">
   <div class="wrap">
@@ -424,7 +448,7 @@
       <div class="benefit">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
         <h3>Tudo em um só lugar</h3>
-        <p>Propostas, calendário de eventos e chat com marcas e criadores, tudo dentro do mesmo aplicativo.</p>
+        <p>Propostas, calendário de eventos e chat com marcas e creators, tudo dentro do mesmo aplicativo.</p>
       </div>
       <div class="benefit">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
@@ -434,69 +458,40 @@
       <div class="benefit">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
         <h3>Vagas limitadas, sem bagunça</h3>
-        <p>Quando a proposta tem vagas limitadas, o sistema trava a vaga sozinho, sem gente aceitando ao mesmo tempo.</p>
+        <p>Quando a proposta tem vagas limitadas, qualquer creator pode se candidatar. A escolha de quem participa da parceria é sempre da marca.</p>
       </div>
       <div class="benefit">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-        <h3>Facilidade de pagamento</h3>
-        <p>Você só precisa se preocupar com o conteúdo. A Vivasso cuida de todo o pagamento e recebimento da parceria.</p>
+        <h3>Pagamento sem complicação</h3>
+        <p>Você só precisa se preocupar com o conteúdo. O valor da proposta é pago diretamente pela marca para você, combinado dentro do aplicativo.</p>
       </div>
     </div>
   </div>
 </section>
-
-<section class="section-light" id="sobre">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow" style="color:var(--violet)">O que é a Vivasso Creators</span>
-      <h2>Uma rede social só para marcas e criadores de conteúdo</h2>
-      <p class="lede">A Vivasso Creators é um aplicativo que conecta marcas a criadores de conteúdo: cada proposta, aceite e conversa tem lugar certo, sem depender de mensagem direta ou planilha.</p>
-    </div>
-    <div class="pillars">
-      <div class="pillar">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 5h16M4 12h10M4 19h13"/></svg></div>
-        <h3>Proposta publicada, não perdida</h3>
-        <p>A marca publica a campanha no aplicativo, paga ou por permuta, e os criadores convidados veem e aceitam direto por lá.</p>
-      </div>
-      <div class="pillar">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21l2-7.5L2 9h7z"/></svg></div>
-        <h3>Vagas limitadas, sem bagunça</h3>
-        <p>Proposta com vagas limitadas? O sistema trava a vaga no instante do aceite, a primeira a confirmar garante o lugar.</p>
-      </div>
-      <div class="pillar">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-        <h3>Contrato antes de participar</h3>
-        <p>Todo criador assina contrato digital assim que entra. A marca publica com segurança, e o criador sabe exatamente as regras.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"><svg viewBox="0 0 1180 34" preserveAspectRatio="none"><path d="M0 20C300 2 880 2 1180 16" stroke="url(#gd1)" stroke-width="1.5" fill="none"/><defs><linearGradient id="gd1" x1="0" y1="0" x2="1180" y2="0"><stop stop-color="#4E7FE0" stop-opacity=".5"/><stop offset=".4" stop-color="#8253F0" stop-opacity=".5"/><stop offset=".7" stop-color="#E3529A" stop-opacity=".5"/><stop offset="1" stop-color="#FFB238" stop-opacity=".5"/></linearGradient></defs></svg></div>
 
 <section class="section-dark" id="como-funciona">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow" style="color:var(--amber)">Como funciona</span>
       <h2>Quatro passos para cada lado da parceria</h2>
-      <p class="lede">O fluxo muda dependendo de quem está entrando. Veja o caminho de marcas e o de criadores.</p>
+      <p class="lede">O fluxo muda dependendo de quem está entrando. Veja o caminho de marcas e o de creators.</p>
     </div>
     <div class="fluxo-tabs" role="tablist">
       <button class="fluxo-tab" role="tab" aria-selected="true" data-group="funciona" data-tab="marca" id="tab-marca">Para marcas</button>
-      <button class="fluxo-tab" role="tab" aria-selected="false" data-group="funciona" data-tab="criadora" id="tab-criadora">Para criadores</button>
+      <button class="fluxo-tab" role="tab" aria-selected="false" data-group="funciona" data-tab="creator" id="tab-creator">Para creators</button>
     </div>
     <div class="fluxo-panels">
       <div class="fluxo-panel" data-group-panel="funciona" data-panel="marca" data-active="true">
         <div class="step"><span class="n">01</span><h4>Assine um plano</h4><p>Escolha Essencial, Premium ou Ilimitado, de acordo com quantas publicações e permutas sua marca precisa por mês.</p></div>
-        <div class="step"><span class="n">02</span><h4>Publique a proposta</h4><p>Defina valor ou permuta, prazo e, se quiser, um número limitado de vagas. A Vivasso controla o limite por você.</p></div>
-        <div class="step"><span class="n">03</span><h4>Acompanhe o interesse</h4><p>Veja quem aceitou, acesse perfil e documentos de cada criador direto no aplicativo.</p></div>
-        <div class="step"><span class="n">04</span><h4>Combine no chat</h4><p>Alinhe entrega, formato e prazo com cada criador aceito, sem sair do app.</p></div>
+        <div class="step"><span class="n">02</span><h4>Publique a proposta</h4><p>Defina valor ou permuta, prazo e, se quiser, um número limitado de vagas. A Vivasso Creators controla o limite por você.</p></div>
+        <div class="step"><span class="n">03</span><h4>Acompanhe o interesse</h4><p>Veja quem aceitou, acesse perfil e métricas de cada creator direto do aplicativo.</p></div>
+        <div class="step"><span class="n">04</span><h4>Combine no chat</h4><p>Alinhe entrega, formato e prazo com cada creator aceito, sem sair do app.</p></div>
       </div>
-      <div class="fluxo-panel" data-group-panel="funciona" data-panel="criadora">
-        <div class="step"><span class="n">01</span><h4>Receba o convite</h4><p>A Vivasso gera um código de convite e você cria sua conta com ele, sem cadastro aberto ao público.</p></div>
+      <div class="fluxo-panel" data-group-panel="funciona" data-panel="creator">
+        <div class="step"><span class="n">01</span><h4>Receba o convite</h4><p>A Vivasso Creators gera um código de convite e envia pro seu e-mail. É com esse código que você cria sua conta, sem cadastro aberto ao público.</p></div>
         <div class="step"><span class="n">02</span><h4>Assine o contrato</h4><p>Preencha o questionário de perfil e assine o contrato digital para liberar sua participação nas propostas.</p></div>
         <div class="step"><span class="n">03</span><h4>Veja as propostas</h4><p>Acompanhe as propostas publicadas para você e aceite as que fizerem sentido, de olho no número de vagas disponíveis.</p></div>
-        <div class="step"><span class="n">04</span><h4>Entregue e receba</h4><p>Entregue o conteúdo combinado dentro do prazo e receba o pagamento, ou a permuta, direto pela Vivasso.</p></div>
+        <div class="step"><span class="n">04</span><h4>Entregue e receba</h4><p>Entregue o conteúdo combinado dentro do prazo e receba o pagamento, ou a permuta, diretamente da marca.</p></div>
       </div>
     </div>
   </div>
@@ -517,11 +512,11 @@
             <div class="m-post">
               <div class="m-head"><div class="m-avatar"></div><div><div class="m-name">Loja Aurora</div><div class="m-time">há 2h</div></div></div>
               <div class="m-photo"></div>
-              <div class="m-cap">Buscando 3 criadores pra campanha de verão ✨ proposta paga, confira!</div>
+              <div class="m-cap">Buscando 3 creators pra campanha de verão ✨ proposta paga, confira!</div>
               <div class="m-actions"><span>♡ 24</span><span>💬 8</span><span>★ salvar</span></div>
             </div>
             <div class="m-post">
-              <div class="m-head"><div class="m-avatar" style="background:linear-gradient(135deg,var(--amber),var(--magenta))"></div><div><div class="m-name">Equipe Vivasso</div><div class="m-time">há 5h</div></div></div>
+              <div class="m-head"><div class="m-avatar" style="background:linear-gradient(135deg,var(--amber),var(--magenta))"></div><div><div class="m-name">Equipe Vivasso Creators</div><div class="m-time">há 5h</div></div></div>
               <div class="m-cap" style="margin-top:0">📌 Aviso: novo prazo de envio de documentos até sexta.</div>
             </div>
           </div>
@@ -571,16 +566,16 @@
 <section class="section-dark" id="planos">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow" style="color:var(--amber)">Como a Vivasso ganha</span>
-      <h2>Assinatura para marcas, comissão para criadores</h2>
+      <span class="eyebrow" style="color:var(--amber)">Como a Vivasso Creators ganha</span>
+      <h2>Assinatura para marcas, comissão para creators</h2>
       <p class="lede">Modelo simples dos dois lados, sem taxa escondida.</p>
     </div>
     <div class="fluxo-tabs" role="tablist">
       <button class="fluxo-tab" role="tab" aria-selected="true" data-group="ganha" data-tab="marca" id="tab-ganha-marca">Com as marcas</button>
-      <button class="fluxo-tab" role="tab" aria-selected="false" data-group="ganha" data-tab="criador" id="tab-ganha-criador">Com os criadores</button>
+      <button class="fluxo-tab" role="tab" aria-selected="false" data-group="ganha" data-tab="creator" id="tab-ganha-creator">Com os creators</button>
     </div>
     <div class="ganha-panel" data-group-panel="ganha" data-panel="marca" data-active="true">
-      <p class="lede" style="margin-bottom:28px;max-width:640px">A marca escolhe um dos três planos abaixo, de acordo com quantas publicações e permutas quer fazer por mês. A comissão de 30% incide sobre o valor pago ao criador em cada proposta paga concluída.</p>
+      <p class="lede" style="margin-bottom:28px;max-width:640px">A marca escolhe um dos três planos abaixo, de acordo com quantas publicações e permutas quer fazer por mês. A comissão de 30% incide sobre o valor pago ao creator em cada proposta paga concluída.</p>
       <div class="plans">
         <div class="plan">
           <h3 style="color:var(--ink-on-dark)">Essencial</h3>
@@ -615,11 +610,11 @@
         </div>
       </div>
     </div>
-    <div class="ganha-panel" data-group-panel="ganha" data-panel="criador">
+    <div class="ganha-panel" data-group-panel="ganha" data-panel="creator">
       <div class="comm-card creator" style="max-width:620px">
-        <span class="comm-tag">Para criadores</span>
+        <span class="comm-tag">Para creators</span>
         <div class="comm-big">R$ 0 de assinatura</div>
-        <p class="exp">Criadores não pagam nada para participar. A Vivasso retém 30% de comissão sobre o valor de cada proposta paga aceita e concluída. Permutas não entram nesse cálculo.</p>
+        <p class="exp">Creators não pagam nada para participar. A Vivasso Creators retém 30% de comissão sobre o valor de cada proposta paga aceita e concluída. Permutas não entram nesse cálculo.</p>
       </div>
     </div>
   </div>
@@ -630,7 +625,7 @@
     <div class="section-head">
       <span class="eyebrow" style="color:var(--amber)">Oferta de lançamento</span>
       <h2>Seja uma das primeiras a entrar</h2>
-      <p class="lede">Enquanto estamos formando o grupo fundador da Vivasso Creators, marcas e criadores que entrarem agora garantem uma vantagem exclusiva.</p>
+      <p class="lede">Enquanto estamos formando o grupo fundador da Vivasso Creators, marcas e creators que entrarem agora garantem uma vantagem exclusiva.</p>
     </div>
     <div class="early-grid">
       <div class="early-card">
@@ -639,9 +634,9 @@
         <p>Assine agora qualquer plano e use a Vivasso Creators sem custo de assinatura nos dois primeiros meses.</p>
       </div>
       <div class="early-card">
-        <span class="tag">Para criadores</span>
+        <span class="tag">Para creators</span>
         <div class="big">Comissão zero</div>
-        <p>Sua primeira proposta paga concluída na Vivasso não paga comissão nenhuma. 100% do valor é seu.</p>
+        <p>Sua primeira proposta paga concluída na Vivasso Creators não paga comissão nenhuma. 100% do valor é seu.</p>
       </div>
     </div>
     <div class="early-cta">
@@ -661,11 +656,11 @@
     <div class="faq-list">
       <details class="faq-item">
         <summary>Como faço pra participar?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <p class="a">Marcas assinam um dos planos e já podem publicar propostas. Criadores de conteúdo entram por convite: você recebe um código, cria sua conta e assina o contrato digital antes de participar das propostas.</p>
+        <p class="a">Marcas assinam um dos planos e já podem publicar propostas. Creators de conteúdo entram por convite: você recebe um código, cria sua conta e assina o contrato digital antes de participar das propostas.</p>
       </details>
       <details class="faq-item">
-        <summary>Criadores pagam alguma coisa pra participar?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <p class="a">Não. A Vivasso não cobra assinatura de criadores. A comissão de 30% é descontada apenas do valor de propostas pagas concluídas, e a primeira proposta de quem entrar agora tem comissão zero.</p>
+        <summary>Creators pagam alguma coisa pra participar?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <p class="a">Não. A Vivasso Creators não cobra assinatura de creators. A comissão de 30% é descontada apenas do valor de propostas pagas concluídas, e a primeira proposta de quem entrar agora tem comissão zero.</p>
       </details>
       <details class="faq-item">
         <summary>O que é uma proposta em permuta?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
@@ -673,11 +668,11 @@
       </details>
       <details class="faq-item">
         <summary>Como funciona uma proposta com vagas limitadas?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <p class="a">O sistema trava a vaga automaticamente assim que alguém aceita, evitando que duas pessoas garantam a mesma vaga ao mesmo tempo.</p>
+        <p class="a">Qualquer creator convidado pode se candidatar, a qualquer momento. Quem escolhe quais creators participam da parceria é sempre a marca, não é por ordem de chegada.</p>
       </details>
       <details class="faq-item">
-        <summary>Como funciona o pagamento entre marca e criador?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <p class="a">A Vivasso intermedia o pagamento dentro do próprio aplicativo, sem você precisar organizar cobrança ou repasse por fora.</p>
+        <summary>Como funciona o pagamento entre marca e creator?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <p class="a">O valor combinado na proposta é pago diretamente pela marca para o creator, sem passar pela Vivasso Creators. O aplicativo só organiza o combinado, o pagamento é direto entre os dois lados.</p>
       </details>
       <details class="faq-item">
         <summary>A oferta de lançamento tem prazo?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
@@ -694,7 +689,7 @@
     <div class="contact-info">
       <span class="eyebrow" style="color:var(--magenta)">Fale com a gente</span>
       <h2 style="margin-top:14px">Quer entrar pra Vivasso Creators?</h2>
-      <p class="lede">Deixe seus dados. A gente entra em contato com o convite e os próximos passos, seja pra assinar um plano ou pra virar criador parceiro.</p>
+      <p class="lede">Deixe seus dados. A gente entra em contato com o convite e os próximos passos, seja pra assinar um plano ou pra virar creator parceiro.</p>
       <div class="contact-chan">
         <a href="mailto:souvivasso@gmail.com">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
@@ -712,7 +707,7 @@
         <label>Você é</label>
         <div class="seg" id="tipo-seg">
           <button type="button" data-val="marca" aria-pressed="true">Marca</button>
-          <button type="button" data-val="criadora" aria-pressed="false">Criador de conteúdo</button>
+          <button type="button" data-val="creator" aria-pressed="false">Creator de conteúdo</button>
         </div>
         <input type="hidden" id="tipo" value="marca">
       </div>
@@ -760,12 +755,25 @@
     <div class="foot-brand">
       <img src="assets/vivasso-logo.png" alt="Vivasso Creators">
     </div>
-    <span>© 2026 Vivasso Creators, feito no Brasil para criadores e marcas brasileiras.</span>
+    <span>© 2026 Vivasso Creators, feito no Brasil para creators e marcas brasileiras.</span>
   </div>
 </footer>
 
 <script>
 (function(){
+  var navEl = document.querySelector('.nav');
+  var heroLogo = document.querySelector('.hero-logo');
+  if(navEl && heroLogo && 'IntersectionObserver' in window){
+    var logoObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        navEl.setAttribute('data-scrolled', entry.isIntersecting ? 'false' : 'true');
+      });
+    }, {threshold: 0});
+    logoObserver.observe(heroLogo);
+  } else if(navEl){
+    navEl.setAttribute('data-scrolled', 'true');
+  }
+
   var tabs = document.querySelectorAll('.fluxo-tab');
   tabs.forEach(function(t){
     t.addEventListener('click', function(){
@@ -803,7 +811,7 @@
     seg.querySelectorAll('button').forEach(function(b){
       b.setAttribute('aria-pressed', b.dataset.val===val ? 'true':'false');
     });
-    if(val==='criadora'){ empresaRow.style.display='none'; redeRow.style.display=''; }
+    if(val==='creator'){ empresaRow.style.display='none'; redeRow.style.display=''; }
     else { empresaRow.style.display=''; redeRow.style.display='none'; }
   }
   seg.querySelectorAll('button').forEach(function(b){
@@ -836,7 +844,7 @@
     var extraLabel = tipo==='marca' ? 'Marca' : 'Instagram/TikTok';
     var msg = document.getElementById('msg').value.trim();
 
-    var subject = 'Quero participar da Vivasso Creators (' + (tipo==='marca'?'marca':'criador') + '), ' + nome;
+    var subject = 'Quero participar da Vivasso Creators (' + (tipo==='marca'?'marca':'creator') + '), ' + nome;
     var bodyLines = [
       'Nome: ' + nome,
       'E-mail: ' + email,
@@ -854,6 +862,3 @@
   });
 })();
 </script>
-
-</body>
-</html>
