@@ -137,19 +137,6 @@
     text-align:center;gap:22px;max-width:760px;margin-inline:auto}
   .hero-logo{height:78px;width:auto}
   @media (max-width:520px){.hero-logo{height:58px}}
-  .hero-logo-wrap{position:relative;display:inline-block}
-  .hero-star{
-    position:absolute;left:77.1%;top:0;width:15.1%;height:auto;
-    animation:hero-star-lap 8s ease-in-out infinite;
-  }
-  @keyframes hero-star-lap{
-    0%,70%,100%{transform:translate(0,0) rotate(0deg)}
-    76%{transform:translate(-40px,-8px) rotate(-15deg)}
-    81%{transform:translate(-95px,10px) rotate(10deg)}
-    86%{transform:translate(-125px,28px) rotate(20deg)}
-    91%{transform:translate(-95px,40px) rotate(8deg)}
-    96%{transform:translate(-35px,18px) rotate(-8deg)}
-  }
   .hero h1{font-size:clamp(28px,4vw,42px);font-weight:600}
   .hero .lede{font-size:17px;color:var(--ink-on-dark-soft);max-width:720px}
   .lede-mobile{display:none}
@@ -417,10 +404,7 @@
 
 <header class="hero" id="hero">
   <div class="wrap hero-inner">
-    <div class="hero-logo-wrap">
-      <img class="hero-logo" src="assets/vivasso-logo-base.png" alt="Vivasso Creators">
-      <img class="hero-star" src="assets/vivasso-star.png" alt="">
-    </div>
+    <img class="hero-logo" src="assets/vivasso-logo.png" alt="Vivasso Creators">
     <h1>O match entre marcas e creators começa aqui</h1>
     <p class="lede">
       <span class="lede-desktop">Marcas publicam a campanha, creators se inscrevem e a marca escolhe o match ideal.<br>A parceria acontece sem DM perdida, planilha ou perfil garimpado.</span>
