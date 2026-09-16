@@ -139,17 +139,17 @@
   @media (max-width:520px){.hero-logo{height:58px}}
   .hero-logo-wrap{position:relative;display:inline-block}
   .hero-star{
-    position:absolute;left:84.5%;top:9%;width:18px;height:18px;
-    offset-path:path('M0,0 A15,15 0 1,1 0.01,0 Z');
-    offset-rotate:0deg;
-    transform:translate(-50%,-50%);
-    animation:hero-star-lap 7s ease-in-out infinite;
+    position:absolute;left:77.1%;top:0;width:15.1%;height:auto;
+    animation:hero-star-lap 8s ease-in-out infinite;
   }
   @keyframes hero-star-lap{
-    0%,72%,100%{offset-distance:0%}
-    88%{offset-distance:100%}
+    0%,70%,100%{transform:translate(0,0) rotate(0deg)}
+    76%{transform:translate(-40px,-8px) rotate(-15deg)}
+    81%{transform:translate(-95px,10px) rotate(10deg)}
+    86%{transform:translate(-125px,28px) rotate(20deg)}
+    91%{transform:translate(-95px,40px) rotate(8deg)}
+    96%{transform:translate(-35px,18px) rotate(-8deg)}
   }
-  @media (max-width:520px){.hero-star{width:13px;height:13px}}
   .hero h1{font-size:clamp(28px,4vw,42px);font-weight:600}
   .hero .lede{font-size:17px;color:var(--ink-on-dark-soft);max-width:720px}
   .lede-mobile{display:none}
@@ -418,11 +418,8 @@
 <header class="hero" id="hero">
   <div class="wrap hero-inner">
     <div class="hero-logo-wrap">
-      <img class="hero-logo" src="assets/vivasso-logo.png" alt="Vivasso Creators">
-      <svg class="hero-star" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 2l1.9 6.1L20 10l-6.1 1.9L12 18l-1.9-6.1L4 10l6.1-1.9z" fill="url(#starGrad)"/>
-        <defs><linearGradient id="starGrad" x1="4" y1="2" x2="20" y2="18"><stop stop-color="#FFD36A"/><stop offset="1" stop-color="#FFB238"/></linearGradient></defs>
-      </svg>
+      <img class="hero-logo" src="assets/vivasso-logo-base.png" alt="Vivasso Creators">
+      <img class="hero-star" src="assets/vivasso-star.png" alt="">
     </div>
     <h1>O match entre marcas e creators começa aqui</h1>
     <p class="lede">
