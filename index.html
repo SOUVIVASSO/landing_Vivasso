@@ -285,14 +285,16 @@
     text-transform:uppercase;background:var(--grad);color:#fff;padding:5px 12px;border-radius:999px;
     margin-bottom:14px}
   .plan h3{font-size:19px;font-weight:700}
-  .plan .price{display:flex;align-items:baseline;gap:6px;margin-top:14px}
+  .plan .price-old{margin-top:14px;font-size:14px;color:var(--ink-on-dark-soft);
+    text-decoration:line-through;font-variant-numeric:tabular-nums}
+  .plan .price{display:flex;align-items:baseline;gap:6px;margin-top:2px}
   .plan .price b{font-family:var(--font-display);font-size:34px;font-weight:700;
     font-variant-numeric:tabular-nums}
   .plan .price span{font-size:13px;color:var(--ink-on-dark-soft)}
+  .permuta-note{margin-top:16px;font-size:12px;color:var(--ink-on-dark-soft);max-width:640px}
   .plan ul{list-style:none;margin:22px 0 26px;padding:0;display:flex;flex-direction:column;gap:12px}
   .plan li{display:flex;gap:10px;font-size:14px;color:var(--ink-on-dark-soft)}
   .plan li svg{width:16px;height:16px;flex-shrink:0;margin-top:2px;stroke:var(--amber)}
-  .plan li.note{padding-left:26px;opacity:.75}
   .plan-cta{margin-top:auto}
 
   /* ---------- OFERTA DE LANCAMENTO ---------- */
@@ -304,26 +306,6 @@
     background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .early-card p{margin-top:10px;font-size:14.5px;color:var(--ink-on-dark-soft)}
   .early-cta{margin-top:30px;text-align:center}
-  .benefits-cta{margin-top:30px;text-align:left}
-
-  .countdown-box{
-    margin-top:26px;padding:22px 26px;border-radius:18px;text-align:center;
-    background:var(--grad-soft);border:1px solid var(--line-dark);
-  }
-  .countdown-label{
-    display:block;font-size:12.5px;font-weight:700;letter-spacing:.06em;
-    color:var(--ink-on-dark-soft);text-transform:uppercase;
-  }
-  .countdown-timer{margin-top:14px;display:flex;align-items:baseline;justify-content:center;gap:10px;flex-wrap:wrap}
-  .ct-unit{display:flex;flex-direction:column;align-items:center;min-width:52px}
-  .ct-num{
-    font-family:var(--font-display);font-weight:700;font-size:32px;line-height:1;
-    color:#fff;
-    font-variant-numeric:tabular-nums;
-  }
-  .ct-lbl{margin-top:4px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-on-dark-soft)}
-  .ct-sep{font-family:var(--font-display);font-weight:700;font-size:28px;color:var(--ink-on-dark-soft);align-self:flex-start;margin-top:2px}
-  @media (max-width:480px){.ct-num{font-size:26px}.ct-unit{min-width:44px}}
 
   /* ---------- FAQ ---------- */
   .faq-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
@@ -674,7 +656,7 @@
       <div class="pillar">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21l2-7.5L2 9h7z"/></svg></div>
         <h3>Vagas limitadas, sem bagunça</h3>
-        <p>Proposta com vagas limitadas? Qualquer creator pode se candidatar, a qualquer momento. A escolha de quem participa fica a critério da marca.</p>
+        <p>Proposta com vagas limitadas? Qualquer creator pode se candidatar, a qualquer momento. Quem escolhe os creators da parceria é sempre a marca.</p>
       </div>
       <div class="pillar">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
@@ -712,11 +694,8 @@
       <div class="benefit">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
         <h3>Pagamento sem complicação</h3>
-        <p>Você só precisa se preocupar com o conteúdo. O valor da proposta é pago diretamente pela marca para você, combinado dentro do aplicativo.</p>
+        <p>Você só precisa se preocupar com o conteúdo. O pagamento fica reservado com a Vivasso Creators assim que a proposta é confirmada, e é liberado pra você na entrega.</p>
       </div>
-    </div>
-    <div class="benefits-cta">
-      <a class="btn btn-grad" href="#contato">Assinar agora</a>
     </div>
   </div>
 </section>
@@ -735,7 +714,7 @@
     <div class="fluxo-panels">
       <div class="fluxo-panel" data-group-panel="funciona" data-panel="marca" data-active="true">
         <div class="step"><span class="n">01</span><h4>Faça o pré-cadastro</h4><p>Mostre interesse em anunciar preenchendo seus dados. Fazemos uma triagem rápida da marca antes de liberar o acesso.</p></div>
-        <div class="step"><span class="n">02</span><h4>Assine um plano</h4><p>Aprovada na triagem, escolha Essencial, Premium ou Ilimitado, de acordo com quantas publicações e permutas sua marca precisa por mês.</p></div>
+        <div class="step"><span class="n">02</span><h4>Assine um plano</h4><p>Aprovada na triagem, escolha Essencial, Premium ou Gold, de acordo com quantas publicações e permutas sua marca precisa por mês.</p></div>
         <div class="step"><span class="n">03</span><h4>Publique a proposta</h4><p>Defina valor ou permuta, prazo e, se quiser, um número limitado de vagas. Deixe aberta pra qualquer creator se candidatar, ou convide creators específicos filtrando por localização, nicho e outros critérios.</p></div>
         <div class="step"><span class="n">04</span><h4>Acompanhe o interesse</h4><p>Veja quem aceitou, acesse perfil e métricas de cada creator direto do aplicativo.</p></div>
         <div class="step"><span class="n">05</span><h4>Combine no chat</h4><p>Alinhe entrega, formato e prazo com cada creator aceito, sem sair do app.</p></div>
@@ -745,7 +724,7 @@
         <div class="step"><span class="n">02</span><h4>Receba o convite</h4><p>Aprovado na triagem, a Vivasso Creators manda um código de convite pro seu e-mail. É com ele que você cria sua conta, sem cadastro aberto ao público.</p></div>
         <div class="step"><span class="n">03</span><h4>Assine o contrato</h4><p>Preencha o questionário de perfil e assine o contrato digital da plataforma. Ele é geral, não é vinculado a nenhuma proposta específica.</p></div>
         <div class="step"><span class="n">04</span><h4>Veja as propostas</h4><p>Acompanhe as propostas publicadas para você e aceite as que fizerem sentido, de olho no número de vagas disponíveis.</p></div>
-        <div class="step"><span class="n">05</span><h4>Entregue e receba</h4><p>Entregue o conteúdo combinado dentro do prazo e receba o pagamento, ou a permuta, diretamente da marca.</p></div>
+        <div class="step"><span class="n">05</span><h4>Entregue e receba</h4><p>Entregue o conteúdo combinado dentro do prazo. O pagamento já fica reservado com a Vivasso Creators desde a confirmação da proposta, e é liberado pra você assim que a entrega é aprovada.</p></div>
       </div>
     </div>
   </div>
@@ -829,46 +808,50 @@
       <button class="fluxo-tab" role="tab" aria-selected="false" data-group="ganha" data-tab="creator" id="tab-ganha-creator">Com os creators</button>
     </div>
     <div class="ganha-panel" data-group-panel="ganha" data-panel="marca" data-active="true">
-      <p class="lede" style="margin-bottom:28px;max-width:640px">A marca escolhe um dos três planos abaixo, de acordo com quantas publicações e permutas quer fazer por mês. A comissão de 30% incide sobre o valor pago ao creator em cada proposta paga concluída.</p>
+      <p class="lede" style="margin-bottom:28px;max-width:640px">A marca escolhe um dos três planos abaixo, de acordo com quantas publicações e permutas quer fazer por mês. Em cada proposta paga, a marca paga o valor combinado uma única vez: ele fica reservado com a Vivasso Creators e, na entrega, é dividido automaticamente entre a comissão de 30% e o creator.</p>
       <div class="plans">
         <div class="plan">
           <h3 style="color:var(--ink-on-dark)">Essencial</h3>
-          <div class="price"><b style="color:var(--ink-on-dark)">R$ 49,90</b><span>/mês</span></div>
+          <div class="price-old">R$ 99,90/mês</div>
+          <div class="price"><b style="color:var(--ink-on-dark)">R$ 69,90</b><span>/mês</span></div>
           <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>3 publicações por mês</li>
-            <li class="note">Somente propostas pagas</li>
-            <li class="note">Sem permuta neste plano</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>1 publicação por mês</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Somente propostas pagas</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Sem permuta neste plano</li>
           </ul>
           <a class="btn btn-ghost-dark btn-full plan-cta" href="#contato" data-tipo="marca" data-plano="Essencial">Quero o Essencial</a>
         </div>
         <div class="plan feat">
           <span class="plan-badge">Mais escolhido</span>
           <h3 style="color:var(--ink-on-dark)">Premium</h3>
-          <div class="price"><b style="color:var(--ink-on-dark)">R$ 89,90</b><span>/mês</span></div>
+          <div class="price-old">R$ 149,90/mês</div>
+          <div class="price"><b style="color:var(--ink-on-dark)">R$ 99,90</b><span>/mês</span></div>
           <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>5 publicações por mês</li>
-            <li class="note">Até 2 publicações em permuta</li>
-            <li class="note">Demais propostas pagas</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>3 publicações por mês</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Até 1 publicação em permuta*</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Filtro de seleção de creators</li>
           </ul>
           <a class="btn btn-grad btn-full plan-cta" href="#contato" data-tipo="marca" data-plano="Premium">Quero o Premium</a>
         </div>
         <div class="plan">
-          <h3 style="color:var(--ink-on-dark)">Ilimitado</h3>
-          <div class="price"><b style="color:var(--ink-on-dark)">R$ 119,90</b><span>/mês</span></div>
+          <h3 style="color:var(--ink-on-dark)">Gold</h3>
+          <div class="price-old">R$ 209,90/mês</div>
+          <div class="price"><b style="color:var(--ink-on-dark)">R$ 139,90</b><span>/mês</span></div>
           <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Publicações ilimitadas</li>
-            <li class="note">Até 5 publicações em permuta</li>
-            <li class="note">Prioridade de suporte</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>5 publicações por mês</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Até 2 publicações em permuta*</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Filtro de seleção de creators</li>
           </ul>
-          <a class="btn btn-ghost-dark btn-full plan-cta" href="#contato" data-tipo="marca" data-plano="Ilimitado">Quero o Ilimitado</a>
+          <a class="btn btn-ghost-dark btn-full plan-cta" href="#contato" data-tipo="marca" data-plano="Gold">Quero o Gold</a>
         </div>
       </div>
+      <p class="permuta-note">* Na opção de permuta, o envio e a entrega do produto são combinados diretamente entre marca e creator. A Vivasso Creators não se responsabiliza por custos ou prazos de envio.</p>
     </div>
     <div class="ganha-panel" data-group-panel="ganha" data-panel="creator">
       <div class="comm-card creator" style="max-width:620px">
         <span class="comm-tag">Para creators</span>
         <div class="comm-big">R$ 0 de assinatura</div>
-        <p class="exp">Creators não pagam nada para participar. A Vivasso Creators cobra 30% de comissão sobre o valor de cada proposta paga aceita e concluída. Permutas não entram nesse cálculo.</p>
+        <p class="exp">Creators não pagam nada para participar. Quando uma proposta paga é concluída, o valor já reservado é dividido automaticamente: 30% de comissão fica com a Vivasso Creators, o resto é liberado pra você. Permutas não entram nesse cálculo.</p>
       </div>
     </div>
   </div>
@@ -877,32 +860,20 @@
 <section class="section-dark" id="oferta">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow" style="color:var(--amber)">Oferta de lançamento · 1º a 31 de outubro</span>
+      <span class="eyebrow" style="color:var(--amber)">Oferta de lançamento</span>
       <h2>Seja uma das primeiras a entrar</h2>
-      <p class="lede">Enquanto estamos formando o grupo fundador da Vivasso Creators, marcas e creators que entrarem agora garantem uma vantagem exclusiva, válida de 1º a 31 de outubro.</p>
+      <p class="lede">Enquanto estamos formando o grupo fundador da Vivasso Creators, marcas e creators que entrarem agora garantem uma vantagem exclusiva.</p>
     </div>
     <div class="early-grid">
       <div class="early-card">
         <span class="tag">Para marcas</span>
         <div class="big">2 meses grátis</div>
-        <p>Assine agora qualquer plano e use a Vivasso Creators sem custo de assinatura nos dois primeiros meses. Oferta válida de 1º a 31 de outubro.</p>
+        <p>Assine agora qualquer plano e use a Vivasso Creators sem custo de assinatura nos dois primeiros meses.</p>
       </div>
       <div class="early-card">
         <span class="tag">Para creators</span>
         <div class="big">Comissão zero</div>
-        <p>Sua primeira proposta paga concluída na Vivasso Creators não paga comissão nenhuma. 100% do valor é seu. Oferta válida de 1º a 31 de outubro.</p>
-      </div>
-    </div>
-    <div class="countdown-box" id="countdownBox">
-      <span class="countdown-label">Promoção válida de 1º a 31 de outubro</span>
-      <div class="countdown-timer" id="countdownTimer">
-        <div class="ct-unit"><span class="ct-num" id="ctDays">00</span><span class="ct-lbl">dias</span></div>
-        <span class="ct-sep">:</span>
-        <div class="ct-unit"><span class="ct-num" id="ctHours">00</span><span class="ct-lbl">horas</span></div>
-        <span class="ct-sep">:</span>
-        <div class="ct-unit"><span class="ct-num" id="ctMinutes">00</span><span class="ct-lbl">min</span></div>
-        <span class="ct-sep">:</span>
-        <div class="ct-unit"><span class="ct-num" id="ctSeconds">00</span><span class="ct-lbl">seg</span></div>
+        <p>Sua primeira proposta paga concluída na Vivasso Creators não paga comissão nenhuma. 100% do valor é seu.</p>
       </div>
     </div>
     <div class="early-cta">
@@ -934,7 +905,7 @@
       </details>
       <details class="faq-item">
         <summary>Como funciona o pagamento entre marca e creator?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <p class="a">O valor combinado na proposta é pago diretamente pela marca para o creator, sem passar pela Vivasso Creators. O aplicativo só organiza o combinado, o pagamento é direto entre os dois lados.</p>
+        <p class="a">A marca paga o valor combinado assim que a proposta é confirmada, e esse valor fica reservado com a Vivasso Creators. Quando você entrega o conteúdo combinado, o valor é liberado automaticamente: a comissão fica com a gente, o resto vai pra você. Assim ninguém corre risco: a marca já pagou, e você só entrega sabendo que o pagamento está garantido.</p>
       </details>
       <details class="faq-item">
         <summary>Como a marca vê meu desempenho?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
@@ -942,23 +913,31 @@
       </details>
       <details class="faq-item">
         <summary>O que é uma proposta em permuta?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <p class="a">É quando, em vez de pagamento em dinheiro, a marca oferece produtos ou serviços em troca do conteúdo. Os planos Premium e Ilimitado permitem publicar propostas em permuta.</p>
+        <p class="a">É quando, em vez de pagamento em dinheiro, a marca oferece produtos ou serviços em troca do conteúdo. Os planos Premium e Gold permitem publicar propostas em permuta. O envio do produto é combinado direto entre marca e creator, a Vivasso Creators não participa dessa logística.</p>
       </details>
       <details class="faq-item">
         <summary>Como funciona uma proposta com vagas limitadas?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <p class="a">Qualquer creator convidado pode se candidatar a qualquer momento. A seleção de quem participa da parceria fica a critério da marca, e não segue ordem de chegada.</p>
+        <p class="a">Qualquer creator convidado pode se candidatar, a qualquer momento. Quem escolhe quais creators participam da parceria é sempre a marca, não é por ordem de chegada.</p>
       </details>
       <details class="faq-item">
         <summary>Minha assinatura tem fidelidade?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
         <p class="a">Não. Você pode cancelar quando quiser, sem multa.</p>
       </details>
       <details class="faq-item">
-        <summary>Posso trocar de plano no meio do mês?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <p class="a">Sim, o upgrade pode ser feito a qualquer momento dentro do próprio mês.</p>
+        <summary>E se eu precisar de mais publicações num mês?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <p class="a">Você tem duas opções: fazer upgrade pra um plano maior a qualquer momento dentro do próprio mês, ou comprar uma publicação avulsa daquele mês, sem precisar trocar de plano.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Quando minha assinatura renova?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <p class="a">Todo dia 1º do mês, independente do dia em que você assinou. Assim fica mais organizado pra todo mundo.</p>
       </details>
       <details class="faq-item">
         <summary>A Vivasso Creators funciona em qualquer cidade?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
         <p class="a">Estamos começando em Fortaleza (CE), com planos de expandir conforme a plataforma cresce.</p>
+      </details>
+      <details class="faq-item">
+        <summary>A oferta de lançamento tem prazo?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <p class="a">Sim, é por tempo limitado, enquanto estivermos formando o grupo fundador da Vivasso Creators.</p>
       </details>
     </div>
   </div>
@@ -1154,37 +1133,6 @@
     window.location.href = mailto;
     success.setAttribute('data-show','true');
   });
-
-  var ctBox = document.getElementById('countdownBox');
-  if(ctBox){
-    var ctEnd = new Date(2026, 9, 31, 23, 59, 59);
-    var ctDays = document.getElementById('ctDays');
-    var ctHours = document.getElementById('ctHours');
-    var ctMinutes = document.getElementById('ctMinutes');
-    var ctSeconds = document.getElementById('ctSeconds');
-    var pad = function(n){ return String(n).padStart(2,'0'); };
-    var ctInterval;
-    var tick = function(){
-      var diff = ctEnd.getTime() - Date.now();
-      if(diff <= 0){
-        clearInterval(ctInterval);
-        ctBox.querySelector('.countdown-label').textContent = 'Promoção encerrada';
-        ctDays.textContent = ctHours.textContent = ctMinutes.textContent = ctSeconds.textContent = '00';
-        return;
-      }
-      var totalSeconds = Math.floor(diff / 1000);
-      var days = Math.floor(totalSeconds / 86400);
-      var hours = Math.floor((totalSeconds % 86400) / 3600);
-      var minutes = Math.floor((totalSeconds % 3600) / 60);
-      var seconds = totalSeconds % 60;
-      ctDays.textContent = pad(days);
-      ctHours.textContent = pad(hours);
-      ctMinutes.textContent = pad(minutes);
-      ctSeconds.textContent = pad(seconds);
-    };
-    tick();
-    ctInterval = setInterval(tick, 1000);
-  }
 })();
 </script>
 
