@@ -1336,12 +1336,48 @@
     if (who === 'bot') { div.innerHTML = text; } else { div.textContent = text; }
     chatBody.appendChild(div);
     chatBody.scrollTop = chatBody.scrollHeight;
+    return div;
   }
 
-  function askBot(q){
+  var VIVI_API_URL = 'https://vivasso-vivi-chat.souvivasso.workers.dev/';
+  var chatHistory = [];
+
+  function escapeChatHtml(s){
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function linkifyChatReply(s){
+    var esc = escapeChatHtml(s);
+    esc = esc.replace(/souvivasso@gmail\.com/g, '<a href="mailto:souvivasso@gmail.com">souvivasso@gmail.com</a>');
+    esc = esc.replace(/\(85\)\s?9771-2114/g, '<a href="https://wa.me/558597712114" target="_blank" rel="noopener">$&</a>');
+    return esc;
+  }
+
+  async function askBot(q){
     if(!q || !q.trim()) return;
     addChatMsg(q, 'user');
-    setTimeout(function(){ addChatMsg(botAnswer(q), 'bot'); }, 350);
+    var typing = addChatMsg('digitando<span class="chat-dots">...</span>', 'bot');
+    try {
+      var ctrl = new AbortController();
+      var timeoutId = setTimeout(function(){ ctrl.abort(); }, 12000);
+      var res = await fetch(VIVI_API_URL, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ message: q, history: chatHistory.slice(-6) }),
+        signal: ctrl.signal
+      });
+      clearTimeout(timeoutId);
+      if(!res.ok) throw new Error('bad status');
+      var data = await res.json();
+      if(!data || !data.reply) throw new Error('no reply');
+      typing.remove();
+      addChatMsg(linkifyChatReply(data.reply), 'bot');
+      chatHistory.push({role:'user', content:q});
+      chatHistory.push({role:'assistant', content:data.reply});
+    } catch(err){
+      typing.remove();
+      addChatMsg(botAnswer(q), 'bot');
+    }
   }
 
   if(chatFab && chatPanel){
