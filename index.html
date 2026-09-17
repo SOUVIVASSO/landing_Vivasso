@@ -323,6 +323,17 @@
     background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .early-card p{margin-top:10px;font-size:14.5px;color:var(--ink-on-dark-soft)}
   .early-cta{margin-top:30px;text-align:center}
+  .countdown{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  .countdown-unit{background:var(--bg-dark-panel);border:1px solid var(--line-dark);border-radius:14px;
+    padding:14px 20px;min-width:76px;text-align:center}
+  .countdown-num{display:block;font-family:var(--font-display);font-weight:700;font-size:28px;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+    font-variant-numeric:tabular-nums}
+  .countdown-label{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-on-dark-soft);margin-top:2px}
+  .countdown-caption{text-align:center;font-size:13px;color:var(--ink-on-dark-soft);margin-top:12px}
+  .countdown-ended{font-size:15px;font-weight:700;color:var(--ink-on-dark);text-align:center;padding:14px}
+  @media (max-width:480px){.countdown{gap:8px}.countdown-unit{padding:10px 12px;min-width:60px}.countdown-num{font-size:22px}}
 
   /* ---------- FAQ ---------- */
   .faq-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
@@ -928,8 +939,15 @@
     <div class="section-head">
       <span class="eyebrow" style="color:var(--amber)">Oferta de lançamento</span>
       <h2>Seja uma das primeiras a entrar</h2>
-      <p class="lede">O aplicativo lança oficialmente em 28 de novembro. Enquanto isso, marcas e creators que fizerem o pré-cadastro agora garantem uma vantagem exclusiva.</p>
+      <p class="lede">De 1º a 31 de outubro, marcas e creators que fizerem o pré-cadastro garantem uma vantagem exclusiva antes do lançamento oficial, em 28 de novembro.</p>
     </div>
+    <div class="countdown" id="offer-countdown">
+      <div class="countdown-unit"><span class="countdown-num" id="cd-days">00</span><span class="countdown-label">dias</span></div>
+      <div class="countdown-unit"><span class="countdown-num" id="cd-hours">00</span><span class="countdown-label">horas</span></div>
+      <div class="countdown-unit"><span class="countdown-num" id="cd-mins">00</span><span class="countdown-label">min</span></div>
+      <div class="countdown-unit"><span class="countdown-num" id="cd-secs">00</span><span class="countdown-label">seg</span></div>
+    </div>
+    <p class="countdown-caption">até o fim da oferta de lançamento, 31 de outubro</p>
     <div class="early-grid">
       <div class="early-card">
         <span class="tag">Para marcas</span>
@@ -948,6 +966,33 @@
     <p class="launch-reminder">Lembrando: o lançamento será dia 28 de novembro. Não perca a data, <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Lan%C3%A7amento%20oficial%20da%20Vivasso%20Creators&dates=20261128/20261129&details=O%20aplicativo%20Vivasso%20Creators%20lan%C3%A7a%20oficialmente%20hoje!%20Acompanhe%20as%20novidades%20em%20creators.vivasso.com.br" target="_blank" rel="noopener">adicione um lembrete no seu calendário clicando aqui</a>.</p>
   </div>
 </section>
+<script>
+(function(){
+  var OFFER_END = new Date('2026-10-31T23:59:59-03:00').getTime();
+  var wrap = document.getElementById('offer-countdown');
+  if(!wrap) return;
+  var elD = document.getElementById('cd-days');
+  var elH = document.getElementById('cd-hours');
+  var elM = document.getElementById('cd-mins');
+  var elS = document.getElementById('cd-secs');
+  var timer;
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    var diff = OFFER_END - Date.now();
+    if(diff <= 0){
+      wrap.innerHTML = '<div class="countdown-ended">Oferta de lançamento encerrada</div>';
+      clearInterval(timer);
+      return;
+    }
+    elD.textContent = pad(Math.floor(diff / 86400000));
+    elH.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+    elM.textContent = pad(Math.floor((diff % 3600000) / 60000));
+    elS.textContent = pad(Math.floor((diff % 60000) / 1000));
+  }
+  tick();
+  timer = setInterval(tick, 1000);
+})();
+</script>
 
 <div class="divider on-dark"><svg viewBox="0 0 1180 34" preserveAspectRatio="none"><path d="M0 20C300 4 880 4 1180 18" stroke="url(#gd3)" stroke-width="1.5" fill="none"/><defs><linearGradient id="gd3" x1="0" y1="0" x2="1180" y2="0"><stop stop-color="#4E7FE0" stop-opacity=".4"/><stop offset=".4" stop-color="#8253F0" stop-opacity=".4"/><stop offset=".7" stop-color="#E3529A" stop-opacity=".4"/><stop offset="1" stop-color="#FFB238" stop-opacity=".4"/></linearGradient></defs></svg></div>
 
@@ -1004,7 +1049,7 @@
       </details>
       <details class="faq-item">
         <summary>A oferta de lançamento tem prazo?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <p class="a">Sim, vale até o lançamento oficial do aplicativo, em 28 de novembro.</p>
+        <p class="a">Sim, vale de 1º a 31 de outubro. É só nesse período que dá pra garantir os 2 meses grátis (marcas) ou a comissão zero na primeira proposta (creators).</p>
       </details>
     </div>
   </div>
@@ -1254,7 +1299,7 @@
     { kw: ['cidade','fortaleza','regiao','onde funciona','minha cidade','atende em','tem no meu estado'],
       a: 'Estamos começando em Fortaleza (CE), com planos de expandir conforme a plataforma cresce.' },
     { kw: ['prazo da oferta','oferta de lancamento','ate quando vale','data de lancamento','quando lanca','quando vai lancar'],
-      a: 'O aplicativo lança oficialmente em 28 de novembro. A oferta de lançamento vale até lá.' },
+      a: 'A oferta de lançamento (2 meses grátis pra marcas, comissão zero na primeira proposta pra creators) vale de 1º a 31 de outubro. O aplicativo lança oficialmente em 28 de novembro.' },
     { kw: ['baixar o app','onde baixo','tem na play store','tem na app store','ja posso usar','ja da pra usar','app store','play store'],
       a: 'O aplicativo ainda não está disponível para download, o lançamento oficial é dia 28 de novembro. Faça seu pré-cadastro aqui na página pra já garantir sua vaga e ser avisado assim que abrir.' },
     { kw: ['contrato','assino contrato','tem contrato digital'],
