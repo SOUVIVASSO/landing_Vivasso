@@ -306,6 +306,25 @@
   .early-cta{margin-top:30px;text-align:center}
   .benefits-cta{margin-top:30px;text-align:left}
 
+  .countdown-box{
+    margin-top:26px;padding:22px 26px;border-radius:18px;text-align:center;
+    background:var(--grad-soft);border:1px solid var(--line-dark);
+  }
+  .countdown-label{
+    display:block;font-size:12.5px;font-weight:700;letter-spacing:.06em;
+    color:var(--ink-on-dark-soft);text-transform:uppercase;
+  }
+  .countdown-timer{margin-top:14px;display:flex;align-items:baseline;justify-content:center;gap:10px;flex-wrap:wrap}
+  .ct-unit{display:flex;flex-direction:column;align-items:center;min-width:52px}
+  .ct-num{
+    font-family:var(--font-display);font-weight:700;font-size:32px;line-height:1;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+    font-variant-numeric:tabular-nums;
+  }
+  .ct-lbl{margin-top:4px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-on-dark-soft)}
+  .ct-sep{font-family:var(--font-display);font-weight:700;font-size:28px;color:var(--ink-on-dark-soft);align-self:flex-start;margin-top:2px}
+  @media (max-width:480px){.ct-num{font-size:26px}.ct-unit{min-width:44px}}
+
   /* ---------- FAQ ---------- */
   .faq-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
   .faq-item{border-bottom:1px solid var(--line)}
@@ -874,6 +893,18 @@
         <p>Sua primeira proposta paga concluída na Vivasso Creators não paga comissão nenhuma. 100% do valor é seu.</p>
       </div>
     </div>
+    <div class="countdown-box" id="countdownBox">
+      <span class="countdown-label">Promoção válida de 1º a 31 de outubro</span>
+      <div class="countdown-timer" id="countdownTimer">
+        <div class="ct-unit"><span class="ct-num" id="ctDays">00</span><span class="ct-lbl">dias</span></div>
+        <span class="ct-sep">:</span>
+        <div class="ct-unit"><span class="ct-num" id="ctHours">00</span><span class="ct-lbl">horas</span></div>
+        <span class="ct-sep">:</span>
+        <div class="ct-unit"><span class="ct-num" id="ctMinutes">00</span><span class="ct-lbl">min</span></div>
+        <span class="ct-sep">:</span>
+        <div class="ct-unit"><span class="ct-num" id="ctSeconds">00</span><span class="ct-lbl">seg</span></div>
+      </div>
+    </div>
     <div class="early-cta">
       <a class="btn btn-grad" href="#contato">Quero garantir minha vaga</a>
     </div>
@@ -1131,6 +1162,37 @@
     window.location.href = mailto;
     success.setAttribute('data-show','true');
   });
+
+  var ctBox = document.getElementById('countdownBox');
+  if(ctBox){
+    var ctEnd = new Date(2026, 9, 31, 23, 59, 59);
+    var ctDays = document.getElementById('ctDays');
+    var ctHours = document.getElementById('ctHours');
+    var ctMinutes = document.getElementById('ctMinutes');
+    var ctSeconds = document.getElementById('ctSeconds');
+    var pad = function(n){ return String(n).padStart(2,'0'); };
+    var ctInterval;
+    var tick = function(){
+      var diff = ctEnd.getTime() - Date.now();
+      if(diff <= 0){
+        clearInterval(ctInterval);
+        ctBox.querySelector('.countdown-label').textContent = 'Promoção encerrada';
+        ctDays.textContent = ctHours.textContent = ctMinutes.textContent = ctSeconds.textContent = '00';
+        return;
+      }
+      var totalSeconds = Math.floor(diff / 1000);
+      var days = Math.floor(totalSeconds / 86400);
+      var hours = Math.floor((totalSeconds % 86400) / 3600);
+      var minutes = Math.floor((totalSeconds % 3600) / 60);
+      var seconds = totalSeconds % 60;
+      ctDays.textContent = pad(days);
+      ctHours.textContent = pad(hours);
+      ctMinutes.textContent = pad(minutes);
+      ctSeconds.textContent = pad(seconds);
+    };
+    tick();
+    ctInterval = setInterval(tick, 1000);
+  }
 })();
 </script>
 
