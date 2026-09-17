@@ -149,8 +149,12 @@
   .hero-logo{height:96px;width:auto;display:block;overflow:visible}
   @media (max-width:520px){.hero-logo{height:70px}}
   .hero-launch-badge{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;
-    letter-spacing:.03em;background:var(--grad);color:#fff;padding:7px 16px;border-radius:999px;margin-bottom:16px}
+    letter-spacing:.03em;background:var(--grad);color:#fff;padding:7px 16px;border-radius:999px;margin-bottom:16px;
+    text-decoration:none;cursor:pointer;transition:transform .15s ease}
+  .hero-launch-badge:hover{transform:scale(1.03)}
   .hero-launch-badge svg{width:13px;height:13px;flex-shrink:0}
+  .launch-reminder{margin-top:22px;font-size:14px;color:var(--ink-on-dark-soft);text-align:center}
+  .launch-reminder a{color:var(--ink-on-dark);font-weight:700;text-decoration:underline}
   .hero h1{font-size:clamp(28px,4vw,42px);font-weight:600}
   .hero .lede{font-size:17px;color:var(--ink-on-dark-soft);max-width:720px}
   .lede-mobile{display:none}
@@ -339,7 +343,7 @@
     box-shadow:0 10px 30px -8px rgba(0,0,0,.5);transition:transform .15s ease;
   }
   .wa-fab:hover{transform:scale(1.07)}
-  .wa-fab svg{width:26px;height:26px;stroke:#fff}
+  .wa-fab svg{width:26px;height:26px;fill:#fff;stroke:none}
   @media (max-width:480px){.wa-fab{width:50px;height:50px;bottom:16px;right:16px}}
 
   .chat-fab{
@@ -398,6 +402,7 @@
   .contact-chan{margin-top:28px;display:flex;flex-direction:column;gap:14px}
   .contact-chan a{text-decoration:none;font-weight:700;font-size:15px;display:flex;align-items:center;gap:10px}
   .contact-chan svg{width:17px;height:17px;stroke:var(--violet)}
+  .contact-chan svg.ico-wa{fill:var(--violet);stroke:none}
 
   form{background:var(--bg-panel);border:1px solid var(--line);border-radius:20px;padding:30px}
   .f-row{display:flex;flex-direction:column;gap:6px}
@@ -688,7 +693,7 @@
       requestAnimationFrame(frame);
     })();
     </script>
-    <span class="hero-launch-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"/></svg>Lançamento oficial em 28 de novembro</span>
+    <a class="hero-launch-badge" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVivasso%20Creators%2F%2FLancamento%2F%2FPT-BR%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Avivasso-creators-lancamento-28112026%40vivasso.com.br%0D%0ADTSTAMP%3A20260917T000000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261128%0D%0ADTEND%3BVALUE%3DDATE%3A20261129%0D%0ASUMMARY%3ALancamento%20oficial%20da%20Vivasso%20Creators%0D%0ADESCRIPTION%3AO%20aplicativo%20Vivasso%20Creators%20lanca%20oficialmente%20hoje.%20Acompanhe%20as%20novidades%20em%20creators.vivasso.com.br%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR%0D%0A" download="vivasso-creators-lancamento.ics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"/></svg>Lançamento oficial em 28 de novembro</a>
     <h1>O match entre marcas e creators começa aqui</h1>
     <p class="lede">
       <span class="lede-desktop">Marcas publicam a campanha, creators se inscrevem e a marca escolhe o match ideal.<br>A parceria acontece sem DM perdida, planilha ou perfil garimpado.</span>
@@ -940,6 +945,7 @@
     <div class="early-cta">
       <a class="btn btn-grad" href="#contato">Quero garantir minha vaga</a>
     </div>
+    <p class="launch-reminder">Lembrando: o lançamento será dia 28 de novembro. Não perca a data, <a href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVivasso%20Creators%2F%2FLancamento%2F%2FPT-BR%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Avivasso-creators-lancamento-28112026%40vivasso.com.br%0D%0ADTSTAMP%3A20260917T000000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261128%0D%0ADTEND%3BVALUE%3DDATE%3A20261129%0D%0ASUMMARY%3ALancamento%20oficial%20da%20Vivasso%20Creators%0D%0ADESCRIPTION%3AO%20aplicativo%20Vivasso%20Creators%20lanca%20oficialmente%20hoje.%20Acompanhe%20as%20novidades%20em%20creators.vivasso.com.br%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR%0D%0A" download="vivasso-creators-lancamento.ics">adicione um lembrete no seu calendário clicando aqui</a>.</p>
   </div>
 </section>
 
@@ -1018,8 +1024,8 @@
           souvivasso@gmail.com
         </a>
         <a href="https://wa.me/558597712114?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20da%20Vivasso%20Creators%20e%20queria%20saber%20mais." target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5 8.42 8.42 0 01-4-1L3 20l1.05-3.5A8.5 8.5 0 1121 11.5z"/></svg>
-          (85) 9771-2114, fale no WhatsApp
+          <svg class="ico-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.669.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.254-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.886 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          (85) 9771-2114, WhatsApp
         </a>
       </div>
     </div>
@@ -1090,7 +1096,7 @@
 </section>
 
 <a class="wa-fab" href="https://wa.me/558597712114?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20da%20Vivasso%20Creators%20e%20queria%20saber%20mais." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5 8.42 8.42 0 01-4-1L3 20l1.05-3.5A8.5 8.5 0 1121 11.5z"/></svg>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.669.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.254-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.886 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <button class="chat-fab" id="chat-fab" type="button" aria-label="Falar com a Vivi" style="background-image:url('assets/vivi-avatar.png');background-size:cover;background-position:center 30%">
@@ -1166,9 +1172,8 @@
 
   function canonicalizeChat(s){
     var n = normalizeChat(s);
-    n = n.replace(/influenciador(a|es)?|influencer/g, 'creator');
-    n = n.replace(/anunciante(s)?|empresa/g, 'marca');
-    n = n.replace(/comissao|taxa/g, 'comissao');
+    n = n.replace(/influenciador(a|es)?|influencer(s)?|influenciadore(s)?/g, 'creator');
+    n = n.replace(/anunciante(s)?|empresa(s)?/g, 'marca');
     return n;
   }
 
@@ -1176,6 +1181,42 @@
     'umas','e','ou','que','pra','para','por','com','sem','se','sou','voce','vc','eu','minha','meu','isso','essa',
     'esse','sua','seu','qual','quais','tem','ha','existe','ser','esta','ta','pro','ai','aqui','la','mim','me',
     'to','sao','mais','muito','bem','ne','entao','mas','ok','oi','ola'];
+
+  // distância de edição simples, usada para tolerar erros de digitação
+  function chatLevenshtein(a,b){
+    var m=a.length, n=b.length, i, j, dp=[];
+    for (i=0;i<=m;i++){ dp.push([i]); }
+    for (j=0;j<=n;j++){ dp[0][j]=j; }
+    for (i=1;i<=m;i++){
+      for (j=1;j<=n;j++){
+        dp[i][j] = a[i-1]===b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]);
+      }
+    }
+    return dp[m][n];
+  }
+
+  var CHAT_EXTRA_VOCAB = ['creator','marca','influencer','influenciador','permuta','triagem','comissao','contrato',
+    'fortaleza','essencial','premium','gold','fidelidade','renovacao','golpe','confiavel','seguranca','pagamento',
+    'assinatura','proposta','desconto','plano','planos','cancelar','upgrade'];
+
+  function correctChatWord(w, vocab){
+    if (w.length < 4 || CHAT_STOPWORDS.indexOf(w) !== -1) return w;
+    for (var i=0;i<vocab.length;i++){ if (vocab[i]===w) return w; }
+    var maxDist = w.length <= 5 ? 1 : 2;
+    var best = null, bestDist = Infinity;
+    for (i=0;i<vocab.length;i++){
+      var v = vocab[i];
+      if (Math.abs(v.length - w.length) > maxDist) continue;
+      var d = chatLevenshtein(w, v);
+      if (d < bestDist){ bestDist = d; best = v; }
+    }
+    return (best && bestDist <= maxDist) ? best : w;
+  }
+
+  function correctChatPhrase(s, vocab){
+    var n = normalizeChat(s).replace(/[^a-z0-9\s]/g,' ').split(/\s+/).filter(Boolean);
+    return n.map(function(w){ return correctChatWord(w, vocab); }).join(' ');
+  }
 
   function tokenizeChat(s){
     return canonicalizeChat(s).replace(/[^a-z0-9\s]/g,' ').split(/\s+/).filter(function(w){
@@ -1188,7 +1229,7 @@
       a: 'Oi! Tudo bem? Pode perguntar sobre planos, pagamento, triagem, prazos ou qualquer dúvida sobre a Vivasso Creators. Se preferir, toque em uma das opções aqui embaixo.' },
     { kw: ['obrigado','obrigada','valeu','entendi','ajudou'],
       a: 'De nada! Se aparecer outra dúvida é só chamar por aqui. 🙂' },
-    { kw: ['sou creator','sou marca','como funciona pra mim','o que eu faco aqui','pra quem e isso','tanto faz'],
+    { kw: ['como funciona pra mim','o que eu faco aqui','pra quem e isso','tanto faz'],
       a: 'Depende se você é marca ou creator! Marcas publicam propostas, pagas ou por permuta, e escolhem os creators. Creators se inscrevem, aceitam propostas e recebem o pagamento garantido na entrega. Me conta: você é marca ou creator?' },
     { kw: ['pre-cadastro','pre cadastro','como participar','como me inscrevo','como faco parte','quero participar','como entro','como comecar','primeiro passo'],
       a: 'Marcas e creators passam primeiro por um pré-cadastro com triagem rápida do perfil, aqui mesmo na página. Depois de aprovado, você recebe um convite por e-mail com os próximos passos.' },
@@ -1230,8 +1271,40 @@
 
   var CHAT_FALLBACK = 'Não tenho certeza sobre essa ainda 🤔 Mas você pode falar direto com a gente no WhatsApp (botão verde aqui do lado) ou em <a href="mailto:souvivasso@gmail.com">souvivasso@gmail.com</a>.';
 
+  var CHAT_CREATOR_FLOW = 'Fechou! Como creator, você faz o pré-cadastro aqui na página, passa por uma triagem rápida (seguidores e engajamento) e recebe um convite por e-mail. Depois é só aceitar as propostas que fizerem sentido e receber o pagamento garantido na entrega, sem pagar nada de assinatura.';
+  var CHAT_MARCA_FLOW = 'Show! Como marca, você faz o pré-cadastro, escolhe um dos planos (Essencial, Premium ou Gold) e já pode publicar propostas pagas ou por permuta pros creators. Você escolhe quem participa, e o pagamento fica seguro com a gente até a entrega.';
+
+  // vocabulário conhecido, usado para corrigir palavras digitadas errado antes de comparar
+  var CHAT_VOCAB = (function(){
+    var set = {};
+    CHAT_EXTRA_VOCAB.forEach(function(w){ set[w] = true; });
+    BOT_FAQ.forEach(function(entry){
+      entry.kw.forEach(function(k){
+        canonicalizeChat(k).replace(/[^a-z0-9\s]/g,' ').split(/\s+/).forEach(function(w){
+          if (w.length>=4 && CHAT_STOPWORDS.indexOf(w)===-1) set[w] = true;
+        });
+      });
+    });
+    return Object.keys(set);
+  })();
+
+  function identityReply(q){
+    var corrected = correctChatPhrase(q, CHAT_VOCAB);
+    var n = canonicalizeChat(corrected).replace(/[^a-z\s]/g,'').trim();
+    if (n === 'creator' || /^eu sou (um |uma )?creator$/.test(n) || /^sou (um |uma )?creator$/.test(n)) {
+      return CHAT_CREATOR_FLOW;
+    }
+    if (n === 'marca' || /^eu sou (uma |um )?marca$/.test(n) || /^sou (uma |um )?marca$/.test(n)) {
+      return CHAT_MARCA_FLOW;
+    }
+    return null;
+  }
+
   function botAnswer(q){
-    var n = canonicalizeChat(q);
+    var idReply = identityReply(q);
+    if (idReply) return idReply;
+    var corrected = correctChatPhrase(q, CHAT_VOCAB);
+    var n = canonicalizeChat(corrected);
     var i, j;
     for (i=0;i<BOT_FAQ.length;i++){
       var entry = BOT_FAQ[i];
@@ -1239,7 +1312,7 @@
         if (n.indexOf(canonicalizeChat(entry.kw[j])) !== -1) return entry.a;
       }
     }
-    var qTokens = tokenizeChat(q);
+    var qTokens = tokenizeChat(corrected);
     if (qTokens.length){
       var best = null, bestScore = 0;
       for (i=0;i<BOT_FAQ.length;i++){
