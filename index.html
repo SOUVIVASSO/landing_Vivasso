@@ -1165,50 +1165,95 @@
     return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
   }
 
+  function canonicalizeChat(s){
+    var n = normalizeChat(s);
+    n = n.replace(/influenciador(a|es)?|influencer/g, 'creator');
+    n = n.replace(/anunciante(s)?|empresa/g, 'marca');
+    n = n.replace(/comissao|taxa/g, 'comissao');
+    return n;
+  }
+
+  var CHAT_STOPWORDS = ['a','o','as','os','de','da','do','das','dos','em','no','na','nos','nas','um','uma','uns',
+    'umas','e','ou','que','pra','para','por','com','sem','se','sou','voce','vc','eu','minha','meu','isso','essa',
+    'esse','sua','seu','qual','quais','tem','ha','existe','ser','esta','ta','pro','ai','aqui','la','mim','me',
+    'to','sao','mais','muito','bem','ne','entao','mas','ok','oi','ola'];
+
+  function tokenizeChat(s){
+    return canonicalizeChat(s).replace(/[^a-z0-9\s]/g,' ').split(/\s+/).filter(function(w){
+      return w.length>=3 && CHAT_STOPWORDS.indexOf(w)===-1;
+    });
+  }
+
   var BOT_FAQ = [
-    { kw: ['pre-cadastro','pre cadastro','como participar','como me inscrevo','como faco parte','quero participar'],
-      a: 'Marcas e creators passam primeiro por um pré-cadastro com triagem rápida do perfil. Depois de aprovado, você recebe um convite por e-mail com os próximos passos.' },
-    { kw: ['triagem','avaliado na triagem','seguidores minimo','quantos seguidores'],
+    { kw: ['oi','ola','bom dia','boa tarde','boa noite','tudo bem'],
+      a: 'Oi! Tudo bem? Pode perguntar sobre planos, pagamento, triagem, prazos ou qualquer dúvida sobre a Vivasso Creators. Se preferir, toque em uma das opções aqui embaixo.' },
+    { kw: ['obrigado','obrigada','valeu','entendi','ajudou'],
+      a: 'De nada! Se aparecer outra dúvida é só chamar por aqui. 🙂' },
+    { kw: ['sou creator','sou marca','como funciona pra mim','o que eu faco aqui','pra quem e isso','tanto faz'],
+      a: 'Depende se você é marca ou creator! Marcas publicam propostas, pagas ou por permuta, e escolhem os creators. Creators se inscrevem, aceitam propostas e recebem o pagamento garantido na entrega. Me conta: você é marca ou creator?' },
+    { kw: ['pre-cadastro','pre cadastro','como participar','como me inscrevo','como faco parte','quero participar','como entro','como comecar','primeiro passo'],
+      a: 'Marcas e creators passam primeiro por um pré-cadastro com triagem rápida do perfil, aqui mesmo na página. Depois de aprovado, você recebe um convite por e-mail com os próximos passos.' },
+    { kw: ['triagem','avaliado na triagem','seguidores minimo','quantos seguidores','preciso de quantos seguidores','criterio de selecao'],
       a: 'Para creators, olhamos seguidores (a partir de cerca de 10 mil), engajamento, tempo de atuação e se o perfil é verificado. Para marcas, fazemos uma checagem rápida do negócio.' },
-    { kw: ['creator paga','pagar para participar','assinatura de creator','custa para creator','creator tem que pagar'],
+    { kw: ['creator paga','pagar para participar','assinatura de creator','custa para creator','creator tem que pagar','e de graca para creator','e gratis para creator'],
       a: 'Não! Creators não pagam assinatura nenhuma. A comissão de 30% é descontada só das propostas pagas concluídas, e sua primeira proposta tem comissão zero.' },
-    { kw: ['pagamento','recebo','receber o dinheiro','seguro','retido','garantido','fica com quem'],
-      a: 'A marca paga assim que a proposta é confirmada, e o valor fica reservado com a Vivasso Creators. Quando o conteúdo é entregue, o valor é liberado automaticamente: comissão pra gente, o resto pro creator.' },
-    { kw: ['permuta','em troca de produto','troca por produto'],
+    { kw: ['pagamento','recebo','receber o dinheiro','retido','garantido','fica com quem','como recebo','quando recebo','é confiavel','e confiavel','e seguro','posso confiar','e golpe','e furada'],
+      a: 'A marca paga assim que a proposta é confirmada, e o valor fica reservado com a Vivasso Creators, não com a marca nem com o creator. Quando o conteúdo é entregue, o valor é liberado automaticamente: comissão pra gente, o resto pro creator. Ninguém corre risco.' },
+    { kw: ['permuta','em troca de produto','troca por produto','so em produto'],
       a: 'Permuta é quando a marca oferece produto ou serviço em vez de dinheiro. Os planos Premium e Gold permitem publicar propostas em permuta.' },
-    { kw: ['vaga','vagas limitadas','ordem de chegada'],
+    { kw: ['vaga','vagas limitadas','ordem de chegada','quantas vagas'],
       a: 'Qualquer creator convidado pode se candidatar a qualquer momento. Quem escolhe quem participa da parceria é sempre a marca, não é por ordem de chegada.' },
-    { kw: ['fidelidade','cancelar assinatura','tem multa'],
+    { kw: ['fidelidade','cancelar assinatura','tem multa','posso cancelar'],
       a: 'Não tem fidelidade. Você pode cancelar sua assinatura quando quiser, sem multa.' },
-    { kw: ['mais publicacoes','fazer upgrade','publicacao avulsa'],
+    { kw: ['mais publicacoes','fazer upgrade','publicacao avulsa','preciso de mais'],
       a: 'Dá pra fazer upgrade de plano a qualquer momento dentro do mês, ou comprar uma publicação avulsa sem precisar trocar de plano.' },
-    { kw: ['renova','renovacao','dia da cobranca'],
+    { kw: ['renova','renovacao','dia da cobranca','quando cobra'],
       a: 'A assinatura renova todo dia 1º do mês, independente do dia em que você assinou.' },
-    { kw: ['cidade','fortaleza','regiao','onde funciona','minha cidade'],
+    { kw: ['cidade','fortaleza','regiao','onde funciona','minha cidade','atende em','tem no meu estado'],
       a: 'Estamos começando em Fortaleza (CE), com planos de expandir conforme a plataforma cresce.' },
-    { kw: ['prazo da oferta','oferta de lancamento','ate quando vale','data de lancamento','quando lanca'],
+    { kw: ['prazo da oferta','oferta de lancamento','ate quando vale','data de lancamento','quando lanca','quando vai lancar'],
       a: 'O aplicativo lança oficialmente em 28 de novembro. A oferta de lançamento vale até lá.' },
-    { kw: ['quanto custa','preco','valor do plano','essencial','premium','gold','plano'],
+    { kw: ['baixar o app','onde baixo','tem na play store','tem na app store','ja posso usar','ja da pra usar','app store','play store'],
+      a: 'O aplicativo ainda não está disponível para download, o lançamento oficial é dia 28 de novembro. Faça seu pré-cadastro aqui na página pra já garantir sua vaga e ser avisado assim que abrir.' },
+    { kw: ['contrato','assino contrato','tem contrato digital'],
+      a: 'Sim, toda parceria tem contrato digital, prazos e regras claras, direto no aplicativo, pra marca e creator saberem exatamente o que esperar.' },
+    { kw: ['quanto custa','preco','valor do plano','essencial','premium','gold','plano','quanto e a mensalidade'],
       a: 'Marcas escolhem entre 3 planos com preço de lançamento: Essencial (R$ 69,90/mês), Premium (R$ 99,90/mês) e Gold (R$ 139,90/mês). Dá pra ver todos os detalhes na seção de planos, aqui na página.' },
-    { kw: ['comissao','30%','quanto a vivasso cobra'],
-      a: 'A comissão da Vivasso Creators é de 30% sobre o valor de propostas pagas concluídas. Sem taxa escondida.' },
-    { kw: ['diferenca entre os planos','qual plano escolher'],
+    { kw: ['comissao','30%','quanto a vivasso cobra','quanto voces ganham','quanto vou ganhar'],
+      a: 'A comissão da Vivasso Creators é de 30% sobre o valor de propostas pagas concluídas. Sem taxa escondida, e a primeira proposta de quem entrar agora tem comissão zero.' },
+    { kw: ['diferenca entre os planos','qual plano escolher','qual plano e melhor'],
       a: 'A diferença entre os planos é a quantidade de publicações por mês, quantas permutas são permitidas e, no Gold, a publicação fica fixada no topo do mural.' },
-    { kw: ['como funciona','o que e a vivasso','o que e isso','o que e o aplicativo'],
-      a: 'A Vivasso Creators conecta marcas e creators: a marca publica a proposta, o creator aceita, e tudo é combinado por contrato digital e chat dentro do app.' },
-    { kw: ['falar com atendente','falar com humano','falar com alguem','atendimento','whatsapp'],
+    { kw: ['como funciona','o que e a vivasso','o que e isso','o que e o aplicativo','o que voces fazem','do que se trata'],
+      a: 'A Vivasso Creators conecta marcas e creators: a marca publica a proposta, o creator aceita, e tudo é combinado por contrato digital e chat dentro do app, com pagamento garantido.' },
+    { kw: ['falar com atendente','falar com humano','falar com alguem','atendimento','whatsapp','falar com voces'],
       a: 'Claro! Toque no botão verde do WhatsApp aqui do lado, ou escreva pra gente em <a href="mailto:souvivasso@gmail.com">souvivasso@gmail.com</a>.' }
   ];
 
+  var CHAT_FALLBACK = 'Não tenho certeza sobre essa ainda 🤔 Mas você pode falar direto com a gente no WhatsApp (botão verde aqui do lado) ou em <a href="mailto:souvivasso@gmail.com">souvivasso@gmail.com</a>.';
+
   function botAnswer(q){
-    var n = normalizeChat(q);
-    for (var i=0;i<BOT_FAQ.length;i++){
+    var n = canonicalizeChat(q);
+    var i, j;
+    for (i=0;i<BOT_FAQ.length;i++){
       var entry = BOT_FAQ[i];
-      for (var j=0;j<entry.kw.length;j++){
-        if (n.indexOf(normalizeChat(entry.kw[j])) !== -1) return entry.a;
+      for (j=0;j<entry.kw.length;j++){
+        if (n.indexOf(canonicalizeChat(entry.kw[j])) !== -1) return entry.a;
       }
     }
-    return 'Não tenho certeza sobre essa ainda 🤔 Mas você pode falar direto com a gente no WhatsApp (botão verde aqui do lado) ou em <a href="mailto:souvivasso@gmail.com">souvivasso@gmail.com</a>.';
+    var qTokens = tokenizeChat(q);
+    if (qTokens.length){
+      var best = null, bestScore = 0;
+      for (i=0;i<BOT_FAQ.length;i++){
+        var e2 = BOT_FAQ[i];
+        var words = {};
+        e2.kw.forEach(function(k){ tokenizeChat(k).forEach(function(w){ words[w]=true; }); });
+        var score = 0;
+        qTokens.forEach(function(w){ if (words[w]) score++; });
+        if (score > bestScore){ bestScore = score; best = e2; }
+      }
+      if (best && bestScore>0) return best.a;
+    }
+    return CHAT_FALLBACK;
   }
 
   function addChatMsg(text, who){
