@@ -1340,9 +1340,9 @@
       </div>
       <div class="f-submit">
         <button type="submit" class="btn btn-grad btn-full">Enviar pré-cadastro</button>
-        <p class="f-fine">Isso vai abrir seu aplicativo de e-mail (ou o Gmail no navegador) com uma mensagem já pronta pra você conferir e enviar pra gente.</p>
+        <p class="f-fine">Seus dados vão direto pra nossa equipe. Se passar na triagem, você recebe o convite por e-mail.</p>
       </div>
-      <div class="f-success" id="f-success">Quase lá! Confira o e-mail que abriu e clique em enviar. Se nada abriu, escreva direto pra <strong>souvivasso@gmail.com</strong>.</div>
+      <div class="f-success" id="f-success">Pré-cadastro enviado ✓ Se passar na triagem, você recebe o convite por e-mail em breve.</div>
     </form>
   </div>
 </section>
@@ -1826,8 +1826,21 @@
     });
   });
 
+  var GFORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeLl6ymJ2vdH9O40GA3oBDnJ2byO_E8xga_51v_XJJcAVf3Qg/formResponse';
+  var GFORM_ENTRIES = {
+    tipo: 'entry.1973718169',
+    nome: 'entry.1172481789',
+    email: 'entry.1518698863',
+    whats: 'entry.1409159033',
+    empresa: 'entry.1306414581',
+    rede: 'entry.1366031311',
+    plano: 'entry.1052051600',
+    msg: 'entry.478711782'
+  };
+
   var form = document.getElementById('lead-form');
   var success = document.getElementById('f-success');
+  var submitBtn = form.querySelector('button[type="submit"]');
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var nome = document.getElementById('nome').value.trim();
@@ -1838,27 +1851,31 @@
     }
     var tipo = tipoHidden.value;
     var whats = document.getElementById('whats').value.trim();
-    var extra = tipo==='marca' ? document.getElementById('empresa').value.trim() : document.getElementById('rede').value.trim();
-    var extraLabel = tipo==='marca' ? 'Marca' : 'Instagram/TikTok';
+    var empresa = document.getElementById('empresa').value.trim();
+    var rede = document.getElementById('rede').value.trim();
     var msg = document.getElementById('msg').value.trim();
     var plano = planoHidden.value;
 
-    var subject = 'Quero participar da Vivasso Creators (' + (tipo==='marca'?'marca':'creator') + '), ' + nome;
-    var bodyLines = [
-      'Nome: ' + nome,
-      'E-mail: ' + email,
-      'WhatsApp: ' + (whats || '-'),
-      extraLabel + ': ' + (extra || '-')
-    ];
-    if(tipo==='marca'){ bodyLines.push('Plano de interesse: ' + (plano || 'Não informado')); }
-    bodyLines.push('');
-    bodyLines.push('Mensagem: ' + (msg || '-'));
-    var mailto = 'mailto:souvivasso@gmail.com'
-      + '?subject=' + encodeURIComponent(subject)
-      + '&body=' + encodeURIComponent(bodyLines.join('\n'));
+    var data = new URLSearchParams();
+    data.append(GFORM_ENTRIES.tipo, tipo === 'marca' ? 'Marca' : 'Creator');
+    data.append(GFORM_ENTRIES.nome, nome);
+    data.append(GFORM_ENTRIES.email, email);
+    data.append(GFORM_ENTRIES.whats, whats);
+    data.append(GFORM_ENTRIES.empresa, empresa);
+    data.append(GFORM_ENTRIES.rede, rede);
+    data.append(GFORM_ENTRIES.plano, tipo === 'marca' ? plano : '');
+    data.append(GFORM_ENTRIES.msg, msg);
 
-    window.location.href = mailto;
-    success.setAttribute('data-show','true');
+    submitBtn.disabled = true;
+    fetch(GFORM_URL, { method: 'POST', mode: 'no-cors', body: data })
+      .catch(function(){})
+      .finally(function(){
+        submitBtn.disabled = false;
+        form.reset();
+        setTipo('marca');
+        success.setAttribute('data-show','true');
+        success.scrollIntoView({ behavior:'smooth', block:'center' });
+      });
   });
 })();
 </script>
