@@ -22,11 +22,6 @@
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjkxOCA0NzIgMjAxIDIwMSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJmZyIgeDE9IjkyMC44IiB5MT0iNTY1LjM5IiB4Mj0iMTA3MC40NyIgeTI9IjU2NS4zOSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGdyYWRpZW50VHJhbnNmb3JtPSJyb3RhdGUoNS41OCw5ODQuNzQsNzk3LjE0KSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmRlMzRjIi8+PHN0b3Agb2Zmc2V0PSIwLjUiIHN0b3AtY29sb3I9IiNmZGIxNDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZDZhMWEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBmaWxsPSJ1cmwoI2ZnKSIgZD0ibSAxMDA4LjA2MTYsNjMyLjQ5Mzk4IGMgLTYuMDMxNSwtMS4xMjA3NiAyLjE3MDIsLTQwLjA5OTc3IC05Ljg3MzczLC01NS4wNDAyIC0xMi4wNDM5NywtMTQuOTQwNDIgLTU0LjY0NDExLC0yMi4xNjkxOSAtNTMuNjAxNCwtMjYuODg2NDUgMS4wNDI3MSwtNC43MTcyNiA1MS41NTUzMiw1LjU5NTYgNjIuODIxOTMsLTAuMzcwNCAxMS4yNjY2LC01Ljk2NTk4IDIwLjUwNDQsLTQ3LjYzMzE2IDI1LjU4NjMsLTQ3LjEzMTk3IDUuMDgxOCwwLjUwMTM4IC01LjI5NzIsNDMuNDY1NzIgMTEuNzM0Myw1OC40MzkzMSAxNy4wMzE1LDE0Ljk3MzU5IDQ4LjExODksMTYuOTYyMTQgNDYuOTYzMywyMi40MjMzMiAtMS4xNTU2LDUuNDYxMTggLTQxLjgxMDEsLTYuMTcyMTYgLTU1LjM5NjIsLTAuMzQxOCAtMTMuNTg2Miw1LjgzMDM1IC0yMi4yMDMsNTAuMDI4OTQgLTI4LjIzNDUsNDguOTA4MTkgeiIvPjwvc3ZnPgo=">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Poppins:wght@500&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Poppins:wght@500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Poppins:wght@500&display=swap" rel="stylesheet"></noscript>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -35,6 +30,11 @@
     })(window, document, "clarity", "script", "yk7jxi8oy6");
 </script>
 <style>
+  @font-face{font-family:'Unbounded';font-style:normal;font-weight:500 800;font-display:swap;src:url('assets/fonts/unbounded-variable.woff2') format('woff2')}
+  @font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url('assets/fonts/plus-jakarta-sans-variable.woff2') format('woff2')}
+  @font-face{font-family:'Plus Jakarta Sans';font-style:italic;font-weight:500;font-display:swap;src:url('assets/fonts/plus-jakarta-sans-italic-variable.woff2') format('woff2')}
+  @font-face{font-family:'Poppins';font-style:normal;font-weight:500;font-display:swap;src:url('assets/fonts/poppins-500.woff2') format('woff2')}
+
   :root{
     --bg:#FBF6F0;
     --bg-panel:#F4E9DF;
@@ -380,26 +380,46 @@
   .mini-tool-body{margin-top:14px;background:var(--bg-dark-panel);border:1px solid var(--line-dark);
     border-radius:16px;padding:22px}
 
-  .quiz-q{font-size:13.5px;font-weight:700;color:var(--ink-on-dark)}
-  .quiz-opts{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-  .quiz-opts button{font-family:var(--font-body);font-weight:700;font-size:13px;padding:9px 16px;
-    border-radius:10px;border:1.5px solid var(--line-dark);background:transparent;color:var(--ink-on-dark-soft);
-    cursor:pointer;transition:border-color .15s ease}
-  .quiz-opts button:hover{border-color:var(--violet);color:var(--ink-on-dark)}
-  .quiz-back{margin-top:14px;font-size:12px;color:var(--ink-on-dark-soft);background:none;border:none;
-    cursor:pointer;text-decoration:underline;padding:0}
-  .quiz-result-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  .quiz-progress{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+  .quiz-progress[hidden]{display:none}
+  .quiz-progress-bar{flex:1;height:5px;border-radius:999px;background:var(--line-dark);overflow:hidden}
+  .quiz-progress-bar span{display:block;height:100%;width:25%;background:var(--grad);border-radius:999px;
+    transition:width .35s ease}
+  .quiz-progress-label{font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--ink-on-dark-soft);
+    white-space:nowrap;font-variant-numeric:tabular-nums}
+  .quiz-q{font-size:16.5px;font-weight:700;color:var(--ink-on-dark);line-height:1.35;letter-spacing:-.005em}
+  .quiz-opts{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+  .quiz-opts button{position:relative;text-align:left;font-family:var(--font-body);font-weight:600;
+    font-size:14px;line-height:1.4;padding:15px 40px 15px 18px;border-radius:14px;
+    border:1.5px solid var(--line-dark);background:var(--bg-dark);color:var(--ink-on-dark-soft);
+    cursor:pointer;transition:border-color .15s ease,background-color .15s ease,color .15s ease,transform .15s ease}
+  .quiz-opts button::after{content:'';position:absolute;right:16px;top:50%;width:9px;height:9px;
+    border-right:2px solid var(--violet);border-bottom:2px solid var(--violet);transform:translateY(-60%) rotate(-45deg);
+    opacity:0;transition:opacity .15s ease,transform .15s ease}
+  .quiz-opts button:hover{border-color:var(--violet);color:var(--ink-on-dark);background:var(--bg-dark-panel);
+    transform:translateX(2px)}
+  .quiz-opts button:hover::after{opacity:1;transform:translateY(-50%) rotate(-45deg)}
+  .quiz-back{margin-top:16px;font-size:12.5px;font-weight:700;color:var(--ink-on-dark-soft);background:none;
+    border:none;cursor:pointer;padding:0;transition:color .15s ease}
+  .quiz-back:hover{color:var(--ink-on-dark)}
+  .quiz-back-center{display:block;margin:18px auto 0}
+  .quiz-result{text-align:center;padding:6px 4px 2px}
+  .quiz-result-icon{width:46px;height:46px;border-radius:50%;background:var(--grad);display:flex;
+    align-items:center;justify-content:center;margin:0 auto 16px}
+  .quiz-result-icon svg{width:22px;height:22px;stroke:#fff}
+  .quiz-result-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
     color:var(--ink-on-dark-soft)}
-  .quiz-result-plan{font-family:var(--font-display);font-weight:700;font-size:24px;margin-top:4px;
+  .quiz-result-plan{font-family:var(--font-display);font-weight:700;font-size:28px;margin-top:6px;
     background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .quiz-result-why{margin-top:8px;font-size:13px;color:var(--ink-on-dark-soft)}
-  .quiz-result-cta{margin-top:16px}
+  .quiz-result-why{margin-top:10px;font-size:13.5px;line-height:1.55;color:var(--ink-on-dark-soft);
+    max-width:360px;margin-inline:auto}
+  .quiz-result-cta{margin-top:20px}
 
   .calc-label{display:block;font-size:12.5px;font-weight:700;color:var(--ink-on-dark)}
   .calc-input{margin-top:8px;width:100%;background:var(--bg-dark);border:1.5px solid var(--line-dark);
     border-radius:10px;padding:11px 14px;font-size:15px;color:var(--ink-on-dark);font-family:inherit}
-  .calc-check{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:12.5px;
-    color:var(--ink-on-dark-soft);cursor:pointer}
+  .calc-input::-webkit-outer-spin-button,.calc-input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .calc-input{-moz-appearance:textfield}
   .calc-result{margin-top:18px;padding-top:16px;border-top:1px solid var(--line-dark)}
   .calc-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;
     color:var(--ink-on-dark-soft)}
@@ -1073,6 +1093,10 @@
       <details class="mini-tool" id="plan-quiz">
         <summary>Descubra o plano ideal para você.<svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
         <div class="mini-tool-body">
+          <div class="quiz-progress" data-quiz-progress>
+            <div class="quiz-progress-bar"><span data-quiz-progress-fill></span></div>
+            <span class="quiz-progress-label" data-quiz-progress-label>Pergunta 1 de 4</span>
+          </div>
           <div class="quiz-step" data-quiz-step="1">
             <p class="quiz-q">Qual é o seu objetivo com a Vivasso Creators?</p>
             <div class="quiz-opts">
@@ -1107,11 +1131,12 @@
             <button type="button" class="quiz-back" data-quiz-back="3">← Voltar</button>
           </div>
           <div class="quiz-result" data-quiz-result hidden>
+            <div class="quiz-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
             <p class="quiz-result-label">Plano recomendado</p>
             <p class="quiz-result-plan" data-quiz-plan></p>
             <p class="quiz-result-why" data-quiz-why></p>
             <a class="btn btn-grad btn-full quiz-result-cta" href="#contato" data-tipo="marca" data-quiz-cta>Quero esse plano</a>
-            <button type="button" class="quiz-back" data-quiz-restart>← Refazer teste</button>
+            <button type="button" class="quiz-back quiz-back-center" data-quiz-restart>← Refazer teste</button>
           </div>
         </div>
       </details>
@@ -1127,7 +1152,6 @@
         <div class="mini-tool-body">
           <label class="calc-label" for="calc-value">Valor da proposta (R$)</label>
           <input type="number" id="calc-value" class="calc-input" placeholder="Ex.: 450" min="0" step="0.01" inputmode="decimal">
-          <label class="calc-check"><input type="checkbox" id="calc-first"> É a sua primeira proposta paga (comissão zero)</label>
           <div class="calc-result">
             <div class="calc-row"><span>Comissão Vivasso Creators</span><b id="calc-comm">R$ 0,00</b></div>
             <div class="calc-row calc-row-total"><span>Você recebe</span><b id="calc-net">R$ 0,00</b></div>
@@ -1459,7 +1483,7 @@
   var chatQuick = document.getElementById('chat-quick');
 
   function normalizeChat(s){
-    return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
+    return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
   }
 
   function canonicalizeChat(s){
@@ -1724,10 +1748,20 @@
     var quizAnswers = {};
     var quizSteps = planQuiz.querySelectorAll('.quiz-step');
     var quizResult = planQuiz.querySelector('[data-quiz-result]');
+    var quizProgress = planQuiz.querySelector('[data-quiz-progress]');
+    var quizProgressFill = planQuiz.querySelector('[data-quiz-progress-fill]');
+    var quizProgressLabel = planQuiz.querySelector('[data-quiz-progress-label]');
+    var QUIZ_TOTAL_STEPS = quizSteps.length;
 
     function quizShowStep(n){
+      n = parseInt(n, 10);
       quizSteps.forEach(function(s){ s.hidden = (s.dataset.quizStep !== String(n)); });
       quizResult.hidden = true;
+      if (quizProgress) {
+        quizProgress.hidden = false;
+        quizProgressFill.style.width = (n / QUIZ_TOTAL_STEPS * 100) + '%';
+        quizProgressLabel.textContent = 'Pergunta ' + n + ' de ' + QUIZ_TOTAL_STEPS;
+      }
     }
     function quizFinish(){
       var objPts = {'baixo':0, 'medio':1, 'alto':2}[quizAnswers.objetivo];
@@ -1762,6 +1796,7 @@
       cta.dataset.plano = plan;
       quizSteps.forEach(function(s){ s.hidden = true; });
       quizResult.hidden = false;
+      if (quizProgress) quizProgress.hidden = true;
     }
     planQuiz.querySelectorAll('[data-objetivo]').forEach(function(b){
       b.addEventListener('click', function(){ quizAnswers.objetivo = b.dataset.objetivo; quizShowStep(2); });
@@ -1784,8 +1819,7 @@
   }
 
   var calcValue = document.getElementById('calc-value');
-  var calcFirst = document.getElementById('calc-first');
-  if (calcValue && calcFirst) {
+  if (calcValue) {
     var calcComm = document.getElementById('calc-comm');
     var calcNet = document.getElementById('calc-net');
     function fmtBRL(n){
@@ -1793,14 +1827,12 @@
     }
     function updateCalc(){
       var v = parseFloat(calcValue.value) || 0;
-      var rate = calcFirst.checked ? 0 : 0.3;
-      var comm = v * rate;
+      var comm = v * 0.3;
       var net = v - comm;
       calcComm.textContent = fmtBRL(comm);
       calcNet.textContent = fmtBRL(net);
     }
     calcValue.addEventListener('input', updateCalc);
-    calcFirst.addEventListener('change', updateCalc);
   }
 
   var cookieNotice = document.getElementById('cookie-notice');
