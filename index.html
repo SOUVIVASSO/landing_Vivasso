@@ -163,6 +163,18 @@
   .hero-launch-badge:hover{transform:scale(1.03)}
   .hero-launch-badge svg{width:13px;height:13px;flex-shrink:0}
   .launch-reminder{margin-top:22px;font-size:14px;color:var(--ink-on-dark-soft);text-align:center}
+
+  .blog-teaser-head{text-align:center;max-width:560px;margin-inline:auto}
+  .blog-teaser-head h3{font-family:var(--font-display);font-weight:700;font-size:19px;margin-top:6px;color:var(--ink-on-dark)}
+  .blog-teaser-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+  @media (max-width:760px){.blog-teaser-grid{grid-template-columns:1fr}}
+  .blog-teaser-card{display:block;background:var(--bg-dark-panel);border:1px solid var(--line-dark);
+    border-radius:14px;padding:16px 18px;text-decoration:none;transition:border-color .15s ease}
+  .blog-teaser-card:hover{border-color:var(--violet)}
+  .blog-teaser-card .tag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amber)}
+  .blog-teaser-card b{display:block;margin-top:6px;font-size:13.5px;font-weight:700;color:var(--ink-on-dark);line-height:1.4}
+  .blog-teaser-link{display:block;text-align:center;margin-top:22px;font-size:13.5px;font-weight:700;
+    color:var(--ink-on-dark);text-decoration:underline}
   .launch-reminder a{color:var(--ink-on-dark);font-weight:700;text-decoration:underline}
   .hero h1{font-size:clamp(28px,4vw,42px);font-weight:600}
   .hero .lede{font-size:17px;color:var(--ink-on-dark-soft);max-width:720px}
@@ -545,6 +557,7 @@
       <a href="#app">Dentro do app</a>
       <a href="#planos">Planos</a>
       <a href="#faq">FAQ</a>
+      <a href="blog.html">Blog</a>
     </div>
     <div class="nav-right">
       <a class="nav-cta" href="#contato">Quero participar</a>
@@ -559,6 +572,7 @@
     <a href="#app">Dentro do app</a>
     <a href="#planos">Planos</a>
     <a href="#faq">FAQ</a>
+    <a href="blog.html">Blog</a>
   </div>
   </nav>
 </div>
@@ -1173,6 +1187,30 @@
   timer = setInterval(tick, 1000);
 })();
 </script>
+
+<section class="section-dark" style="padding-block:44px">
+  <div class="wrap">
+    <div class="blog-teaser-head">
+      <span class="eyebrow" style="color:var(--magenta)">Blog</span>
+      <h3>Quer entender mais sobre o universo de creators e marcas?</h3>
+    </div>
+    <div class="blog-teaser-grid">
+      <a class="blog-teaser-card" href="blog/tipos-de-creators.html">
+        <span class="tag">Creators</span>
+        <b>Nano, micro, macro: entenda os tipos de creators</b>
+      </a>
+      <a class="blog-teaser-card" href="blog/o-que-e-um-creator.html">
+        <span class="tag">Guia</span>
+        <b>O que é um creator de conteúdo e como se tornar um</b>
+      </a>
+      <a class="blog-teaser-card" href="blog/quanto-custa-um-creator.html">
+        <span class="tag">Mercado</span>
+        <b>Quanto custa contratar um creator? Entenda os preços</b>
+      </a>
+    </div>
+    <a class="blog-teaser-link" href="blog.html">Acessar o blog →</a>
+  </div>
+</section>
 
 <div class="divider on-dark"><svg viewBox="0 0 1180 34" preserveAspectRatio="none"><path d="M0 20C300 4 880 4 1180 18" stroke="url(#gd3)" stroke-width="1.5" fill="none"/><defs><linearGradient id="gd3" x1="0" y1="0" x2="1180" y2="0"><stop stop-color="#4E7FE0" stop-opacity=".4"/><stop offset=".4" stop-color="#8253F0" stop-opacity=".4"/><stop offset=".7" stop-color="#E3529A" stop-opacity=".4"/><stop offset="1" stop-color="#FFB238" stop-opacity=".4"/></linearGradient></defs></svg></div>
 
