@@ -260,21 +260,43 @@
   .step p{margin-top:8px;font-size:13.5px;color:var(--ink-on-dark-soft)}
 
   /* ---------- APP MOCKUPS ---------- */
-  .phones{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-  @media (max-width:1100px){.phones{grid-template-columns:repeat(2,1fr);max-width:560px;margin-inline:auto}}
-  @media (max-width:560px){.phones{grid-template-columns:1fr;max-width:300px}}
-  .phone-col{display:flex;flex-direction:column;align-items:center;gap:16px}
-  .phone-cap{text-align:center}
-  .phone-cap b{display:block;font-size:15.5px;font-weight:700;font-family:var(--font-display)}
-  .phone-cap span{font-size:13px;color:var(--ink-soft)}
+  .app-demo{display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:center;margin-top:8px}
+  @media (max-width:860px){.app-demo{grid-template-columns:1fr;justify-items:center;gap:32px;text-align:left}}
+  .phone-showcase{display:flex;justify-content:center}
   .phone{
-    width:100%;max-width:250px;aspect-ratio:9/18.5;border-radius:34px;background:#0E0813;
+    width:100%;max-width:270px;aspect-ratio:9/18.5;border-radius:34px;background:#0E0813;
     border:6px solid #0E0813;box-shadow:0 20px 45px -18px rgba(20,14,27,.45);
     overflow:hidden;position:relative;
   }
   .phone::before{content:"";position:absolute;top:8px;left:50%;translate:-50% 0;width:56px;height:16px;
     border-radius:10px;background:#0E0813;z-index:5}
-  .phone-screen{position:absolute;inset:0;background:var(--bg);display:flex;flex-direction:column}
+  .phone-screen{position:absolute;inset:0;background:var(--bg);display:flex;flex-direction:column;
+    opacity:0;transform:translateX(10px);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
+  .phone-screen.active{opacity:1;transform:translateX(0);pointer-events:auto}
+  .app-steps{display:flex;flex-direction:column;gap:6px;width:100%;max-width:420px}
+  .app-step{
+    display:flex;align-items:center;gap:14px;text-align:left;padding:13px 16px;border-radius:14px;
+    border:none;background:transparent;cursor:pointer;position:relative;overflow:hidden;
+    font-family:inherit;transition:background-color .2s ease;
+  }
+  .app-step:hover{background:var(--bg-panel)}
+  .app-step.active{background:var(--bg-panel)}
+  .app-step-num{
+    flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);font-weight:700;font-size:12.5px;background:var(--line);color:var(--ink-soft);
+    transition:background .2s ease,color .2s ease;
+  }
+  .app-step.active .app-step-num{background:var(--grad);color:#fff}
+  .app-step-text{display:flex;flex-direction:column;gap:2px}
+  .app-step-text b{font-size:15px;font-weight:700;font-family:var(--font-display)}
+  .app-step-text span{font-size:13px;color:var(--ink-soft)}
+  .app-step::after{
+    content:"";position:absolute;left:16px;right:16px;bottom:6px;height:2px;border-radius:2px;
+    background:var(--grad);width:0;
+  }
+  .app-step.active::after{animation:app-step-fill 4.2s linear forwards}
+  .app-step.paused::after{animation-play-state:paused}
+  @keyframes app-step-fill{from{width:0}to{width:calc(100% - 32px)}}
   .p-topbar{background:var(--bg-dark);color:var(--ink-on-dark);padding:22px 14px 10px;
     font-size:11px;font-weight:700;display:flex;align-items:center;gap:8px}
   .p-topbar .dot{width:7px;height:7px;border-radius:50%;background:var(--grad)}
@@ -952,90 +974,100 @@
     <div class="section-head">
       <span class="eyebrow" style="color:var(--magenta-on-light)">Dentro do app</span>
       <h2>O mural, a proposta, o calendário e o chat, na prática</h2>
-      <p class="lede">Imagem ilustrativa que representa o aplicativo no seu lançamento.</p>
+      <p class="lede">Simulação de tela do aplicativo no seu lançamento. Clique em cada etapa pra ver como fica.</p>
     </div>
-    <div class="phones">
-      <div class="phone-col">
-        <div class="phone"><div class="phone-screen">
-          <div class="p-topbar"><span class="dot"></span> Mural</div>
-          <div class="p-body">
-            <div class="m-post">
-              <div class="m-head"><div class="m-avatar" style="background-image:url('assets/mockup-loja-avatar.webp');background-size:cover;background-position:center"></div><div><div class="m-name">Loja Aurora</div><div class="m-time">há 2h</div></div></div>
-              <div class="m-photo" style="background-image:url('assets/mockup-post-produto.webp');background-size:cover;background-position:center"></div>
-              <div class="m-cap">Buscando 3 creators pra campanha de verão ✨ proposta paga, confira!</div>
-              <div class="m-value">R$ 450,00</div>
-              <a class="m-btn">Ver proposta</a>
-              <div class="m-actions"><span>♡ 24</span><span>💬 8</span><span>★ salvar</span></div>
-            </div>
-            <div class="m-post">
-              <div class="m-head"><div class="m-avatar" style="background:linear-gradient(135deg,var(--violet),var(--magenta))"></div><div><div class="m-name">Studio Belle</div><div class="m-time">há 6h</div></div></div>
-              <div class="m-cap" style="margin-top:6px">Procuramos creators de beleza pra campanha em permuta 💄 kit completo de produtos, vagas ilimitadas!</div>
-              <div class="m-value">Permuta · kit de produtos</div>
-              <a class="m-btn">Ver proposta</a>
-              <div class="m-actions"><span>♡ 12</span><span>💬 3</span><span>★ salvar</span></div>
+    <div class="app-demo" id="app-demo">
+      <div class="phone-showcase">
+        <div class="phone">
+          <div class="phone-screen active" data-screen="mural">
+            <div class="p-topbar"><span class="dot"></span> Mural</div>
+            <div class="p-body">
+              <div class="m-post">
+                <div class="m-head"><div class="m-avatar" style="background-image:url('assets/mockup-loja-avatar.webp');background-size:cover;background-position:center"></div><div><div class="m-name">Loja Aurora</div><div class="m-time">há 2h</div></div></div>
+                <div class="m-photo" style="background-image:url('assets/mockup-post-produto.webp');background-size:cover;background-position:center"></div>
+                <div class="m-cap">Buscando 3 creators pra campanha de verão ✨ proposta paga, confira!</div>
+                <div class="m-value">R$ 450,00</div>
+                <a class="m-btn">Ver proposta</a>
+                <div class="m-actions"><span>♡ 24</span><span>💬 8</span><span>★ salvar</span></div>
+              </div>
+              <div class="m-post">
+                <div class="m-head"><div class="m-avatar" style="background:linear-gradient(135deg,var(--violet),var(--magenta))"></div><div><div class="m-name">Studio Belle</div><div class="m-time">há 6h</div></div></div>
+                <div class="m-cap" style="margin-top:6px">Procuramos creators de beleza pra campanha em permuta 💄 kit completo de produtos, vagas ilimitadas!</div>
+                <div class="m-value">Permuta · kit de produtos</div>
+                <a class="m-btn">Ver proposta</a>
+                <div class="m-actions"><span>♡ 12</span><span>💬 3</span><span>★ salvar</span></div>
+              </div>
             </div>
           </div>
-        </div></div>
-        <div class="phone-cap"><b>Mural</b><span>posts, avisos e comentários</span></div>
+          <div class="phone-screen" data-screen="propostas">
+            <div class="p-topbar"><span class="dot"></span> Propostas</div>
+            <div class="p-body">
+              <div class="pr-card">
+                <span class="pr-badge">Proposta paga</span>
+                <div class="pr-title">Loja Aurora · Campanha Verão</div>
+                <div class="pr-value">R$ 450,00</div>
+                <div class="pr-row"><span>2 de 3 vagas preenchidas</span><span>até 20/10</span></div>
+                <div class="pr-vagas"><i></i></div>
+                <div class="pr-btns"><span class="pr-accept">Aceitar</span><span class="pr-decline">Recusar</span></div>
+              </div>
+              <div class="pr-card">
+                <span class="pr-badge" style="background:var(--ink);color:var(--bg)">Permuta</span>
+                <div class="pr-title">Studio Belle · Kit produtos</div>
+                <div class="pr-row" style="margin-top:9px"><span>Vagas ilimitadas</span><span>até 30/10</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-screen" data-screen="calendario">
+            <div class="p-topbar"><span class="dot"></span> Calendário</div>
+            <div class="p-body">
+              <div class="cal-head">Outubro</div>
+              <div class="cal-grid">
+                <span class="cal-dow">D</span><span class="cal-dow">S</span><span class="cal-dow">T</span><span class="cal-dow">Q</span><span class="cal-dow">Q</span><span class="cal-dow">S</span><span class="cal-dow">S</span>
+                <span class="cal-day blank"></span><span class="cal-day blank"></span><span class="cal-day blank"></span><span class="cal-day blank"></span><span class="cal-day">1</span><span class="cal-day">2</span><span class="cal-day">3</span>
+                <span class="cal-day">4</span><span class="cal-day">5</span><span class="cal-day">6</span><span class="cal-day">7</span><span class="cal-day off">8</span><span class="cal-day off">9</span><span class="cal-day">10</span>
+                <span class="cal-day">11</span><span class="cal-day">12</span><span class="cal-day">13</span><span class="cal-day">14</span><span class="cal-day">15</span><span class="cal-day">16</span><span class="cal-day">17</span>
+                <span class="cal-day">18</span><span class="cal-day">19</span><span class="cal-day busy">20</span><span class="cal-day">21</span><span class="cal-day">22</span><span class="cal-day">23</span><span class="cal-day">24</span>
+                <span class="cal-day">25</span><span class="cal-day">26</span><span class="cal-day">27</span><span class="cal-day">28</span><span class="cal-day">29</span><span class="cal-day busy">30</span><span class="cal-day">31</span>
+              </div>
+              <div class="cal-legend">
+                <div class="cal-legend-item"><i style="background:var(--grad)"></i> Campanha agendada</div>
+                <div class="cal-legend-item"><i style="background:var(--line)"></i> Indisponível</div>
+              </div>
+              <div class="cal-list">
+                <div class="cal-list-item"><b>Loja Aurora</b><span>até 20/10</span></div>
+                <div class="cal-list-item"><b>Studio Belle</b><span>até 30/10</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-screen" data-screen="chat">
+            <div class="p-topbar"><span class="dot"></span> Chat</div>
+            <div class="p-body">
+              <div class="ch-head"><div class="ch-avatar" style="background-image:url('assets/mockup-bruna-avatar.webp');background-size:cover;background-position:center"></div><div><div class="ch-title">Loja Aurora × Bruna</div><div class="ch-sub">campanha verão</div></div></div>
+              <div class="bubble in">Oi Bruna! Pode gravar o vídeo até quinta?</div>
+              <div class="bubble out">Consigo sim, te mando o roteiro hoje ainda 🙌</div>
+              <div class="bubble in">Perfeito, aguardo por aqui.</div>
+              <div class="ch-input">Escreva uma mensagem…</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="phone-col">
-        <div class="phone"><div class="phone-screen">
-          <div class="p-topbar"><span class="dot"></span> Propostas</div>
-          <div class="p-body">
-            <div class="pr-card">
-              <span class="pr-badge">Proposta paga</span>
-              <div class="pr-title">Loja Aurora · Campanha Verão</div>
-              <div class="pr-value">R$ 450,00</div>
-              <div class="pr-row"><span>2 de 3 vagas preenchidas</span><span>até 20/10</span></div>
-              <div class="pr-vagas"><i></i></div>
-              <div class="pr-btns"><span class="pr-accept">Aceitar</span><span class="pr-decline">Recusar</span></div>
-            </div>
-            <div class="pr-card">
-              <span class="pr-badge" style="background:var(--ink);color:var(--bg)">Permuta</span>
-              <div class="pr-title">Studio Belle · Kit produtos</div>
-              <div class="pr-row" style="margin-top:9px"><span>Vagas ilimitadas</span><span>até 30/10</span></div>
-            </div>
-          </div>
-        </div></div>
-        <div class="phone-cap"><b>Propostas</b><span>vagas, aceite e recusa</span></div>
-      </div>
-      <div class="phone-col">
-        <div class="phone"><div class="phone-screen">
-          <div class="p-topbar"><span class="dot"></span> Calendário</div>
-          <div class="p-body">
-            <div class="cal-head">Outubro</div>
-            <div class="cal-grid">
-              <span class="cal-dow">D</span><span class="cal-dow">S</span><span class="cal-dow">T</span><span class="cal-dow">Q</span><span class="cal-dow">Q</span><span class="cal-dow">S</span><span class="cal-dow">S</span>
-              <span class="cal-day blank"></span><span class="cal-day blank"></span><span class="cal-day blank"></span><span class="cal-day blank"></span><span class="cal-day">1</span><span class="cal-day">2</span><span class="cal-day">3</span>
-              <span class="cal-day">4</span><span class="cal-day">5</span><span class="cal-day">6</span><span class="cal-day">7</span><span class="cal-day off">8</span><span class="cal-day off">9</span><span class="cal-day">10</span>
-              <span class="cal-day">11</span><span class="cal-day">12</span><span class="cal-day">13</span><span class="cal-day">14</span><span class="cal-day">15</span><span class="cal-day">16</span><span class="cal-day">17</span>
-              <span class="cal-day">18</span><span class="cal-day">19</span><span class="cal-day busy">20</span><span class="cal-day">21</span><span class="cal-day">22</span><span class="cal-day">23</span><span class="cal-day">24</span>
-              <span class="cal-day">25</span><span class="cal-day">26</span><span class="cal-day">27</span><span class="cal-day">28</span><span class="cal-day">29</span><span class="cal-day busy">30</span><span class="cal-day">31</span>
-            </div>
-            <div class="cal-legend">
-              <div class="cal-legend-item"><i style="background:var(--grad)"></i> Campanha agendada</div>
-              <div class="cal-legend-item"><i style="background:var(--line)"></i> Indisponível</div>
-            </div>
-            <div class="cal-list">
-              <div class="cal-list-item"><b>Loja Aurora</b><span>até 20/10</span></div>
-              <div class="cal-list-item"><b>Studio Belle</b><span>até 30/10</span></div>
-            </div>
-          </div>
-        </div></div>
-        <div class="phone-cap"><b>Calendário</b><span>disponibilidade e campanhas ativas</span></div>
-      </div>
-      <div class="phone-col">
-        <div class="phone"><div class="phone-screen">
-          <div class="p-topbar"><span class="dot"></span> Chat</div>
-          <div class="p-body">
-            <div class="ch-head"><div class="ch-avatar" style="background-image:url('assets/mockup-bruna-avatar.webp');background-size:cover;background-position:center"></div><div><div class="ch-title">Loja Aurora × Bruna</div><div class="ch-sub">campanha verão</div></div></div>
-            <div class="bubble in">Oi Bruna! Pode gravar o vídeo até quinta?</div>
-            <div class="bubble out">Consigo sim, te mando o roteiro hoje ainda 🙌</div>
-            <div class="bubble in">Perfeito, aguardo por aqui.</div>
-            <div class="ch-input">Escreva uma mensagem…</div>
-          </div>
-        </div></div>
-        <div class="phone-cap"><b>Chat</b><span>alinhamento direto por proposta</span></div>
+      <div class="app-steps" id="app-steps">
+        <button type="button" class="app-step active" data-step="mural">
+          <span class="app-step-num">1</span>
+          <span class="app-step-text"><b>Mural</b><span>posts, avisos e comentários</span></span>
+        </button>
+        <button type="button" class="app-step" data-step="propostas">
+          <span class="app-step-num">2</span>
+          <span class="app-step-text"><b>Propostas</b><span>vagas, aceite e recusa</span></span>
+        </button>
+        <button type="button" class="app-step" data-step="calendario">
+          <span class="app-step-num">3</span>
+          <span class="app-step-text"><b>Calendário</b><span>disponibilidade e campanhas ativas</span></span>
+        </button>
+        <button type="button" class="app-step" data-step="chat">
+          <span class="app-step-num">4</span>
+          <span class="app-step-text"><b>Chat</b><span>alinhamento direto por proposta</span></span>
+        </button>
       </div>
     </div>
   </div>
@@ -1743,6 +1775,42 @@
       chatInput.value = '';
       askBot(v);
     });
+  }
+
+  var appDemo = document.getElementById('app-demo');
+  if (appDemo) {
+    var appSteps = Array.prototype.slice.call(appDemo.querySelectorAll('.app-step'));
+    var appScreens = Array.prototype.slice.call(appDemo.querySelectorAll('.phone-screen'));
+    var appIdx = 0;
+    var appTimer = null;
+    var APP_STEP_MS = 4200;
+
+    function appShow(i){
+      appIdx = i;
+      appSteps.forEach(function(s, idx){ s.classList.toggle('active', idx === i); });
+      appScreens.forEach(function(s, idx){ s.classList.toggle('active', idx === i); });
+    }
+    function appRestartTimer(){
+      if (appTimer) clearInterval(appTimer);
+      appTimer = setInterval(function(){
+        appShow((appIdx + 1) % appSteps.length);
+      }, APP_STEP_MS);
+    }
+    appSteps.forEach(function(btn, idx){
+      btn.addEventListener('click', function(){
+        appShow(idx);
+        appRestartTimer();
+      });
+    });
+    appDemo.addEventListener('mouseenter', function(){
+      if (appTimer) { clearInterval(appTimer); appTimer = null; }
+      appSteps[appIdx].classList.add('paused');
+    });
+    appDemo.addEventListener('mouseleave', function(){
+      appSteps[appIdx].classList.remove('paused');
+      appRestartTimer();
+    });
+    appRestartTimer();
   }
 
   var planQuiz = document.getElementById('plan-quiz');
