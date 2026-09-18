@@ -1014,7 +1014,7 @@
       </div>
       <p class="permuta-note">* Na opção de permuta, o envio e a entrega do produto são combinados diretamente entre marca e creator. A Vivasso Creators não se responsabiliza por custos ou prazos de envio.</p>
       <details class="mini-tool" id="plan-quiz">
-        <summary>Não sabe qual o plano ideal para você? Faça um teste rápido e descubra<svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <summary>Descubra o plano ideal para você.<svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
         <div class="mini-tool-body">
           <div class="quiz-step" data-quiz-step="1">
             <p class="quiz-q">Quantas publicações por mês você pretende fazer?</p>
@@ -1030,7 +1030,24 @@
               <button type="button" data-permuta="sim">Sim</button>
               <button type="button" data-permuta="nao">Não</button>
             </div>
-            <button type="button" class="quiz-back" data-quiz-back>← Voltar</button>
+            <button type="button" class="quiz-back" data-quiz-back="1">← Voltar</button>
+          </div>
+          <div class="quiz-step" data-quiz-step="3" hidden>
+            <p class="quiz-q">Sua marca já pagou por publicidade com creators ou influenciadores antes?</p>
+            <div class="quiz-opts">
+              <button type="button" data-experiencia="sim">Sim, já pagou</button>
+              <button type="button" data-experiencia="nao">Não, seria a primeira vez</button>
+            </div>
+            <button type="button" class="quiz-back" data-quiz-back="2">← Voltar</button>
+          </div>
+          <div class="quiz-step" data-quiz-step="4" hidden>
+            <p class="quiz-q">Há quanto tempo sua empresa existe?</p>
+            <div class="quiz-opts">
+              <button type="button" data-tempo="comecando">Estou começando agora</button>
+              <button type="button" data-tempo="1a3">1 a 3 anos</button>
+              <button type="button" data-tempo="3mais">Mais de 3 anos</button>
+            </div>
+            <button type="button" class="quiz-back" data-quiz-back="3">← Voltar</button>
           </div>
           <div class="quiz-result" data-quiz-result hidden>
             <p class="quiz-result-label">Plano recomendado</p>
@@ -1049,7 +1066,7 @@
         <p class="exp">Creators não pagam nada para participar. Quando uma proposta paga é concluída e você envia as métricas da campanha, o valor já reservado é liberado em até 7 dias úteis: 30% de comissão fica com a Vivasso Creators, o resto é seu. Permutas não entram nesse cálculo.</p>
       </div>
       <details class="mini-tool" id="earnings-calc">
-        <summary>Quer saber exatamente quanto você vai ganhar? Clique aqui e descubra<svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <summary>Descubra exatamente quanto você ganha.<svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
         <div class="mini-tool-body">
           <label class="calc-label" for="calc-value">Valor da proposta (R$)</label>
           <input type="number" id="calc-value" class="calc-input" placeholder="Ex.: 450" min="0" step="0.01" inputmode="decimal">
@@ -1584,15 +1601,26 @@
       quizResult.hidden = true;
     }
     function quizFinish(){
-      var plan, why;
-      if (quizAnswers.posts === '1' && quizAnswers.permuta === 'nao') {
-        plan = 'Essencial'; why = 'Pra quem faz 1 publicação por mês e só trabalha com propostas pagas, o Essencial cobre exatamente isso, pelo menor valor.';
-      } else if (quizAnswers.posts === '1' && quizAnswers.permuta === 'sim') {
-        plan = 'Premium'; why = 'Como você quer oferecer permuta, precisa de pelo menos o Premium, que libera até 1 publicação em permuta por mês.';
-      } else if (quizAnswers.posts === '2-3') {
-        plan = 'Premium'; why = 'O Premium cobre até 3 publicações por mês, com filtro de seleção de creators e permuta liberada.';
+      var tierByPosts = {'1':0, '2-3':1, '4+':2};
+      var tier = tierByPosts[quizAnswers.posts];
+      var permutaFloor = false;
+      if (quizAnswers.permuta === 'sim' && tier < 1) { tier = 1; permutaFloor = true; }
+      var iniciante = (quizAnswers.tempo === 'comecando' && quizAnswers.experiencia === 'nao');
+      var downgraded = false;
+      if (iniciante && tier > 0) { tier -= 1; downgraded = true; }
+      var plans = ['Essencial', 'Premium', 'Gold'];
+      var plan = plans[tier];
+      var why;
+      if (downgraded) {
+        why = 'Como sua empresa está começando agora e essa seria a primeira vez pagando por creators, o ' + plan + ' é o ponto de partida mais seguro. Dá pra fazer upgrade quando quiser, sem perder nada.';
+      } else if (plan === 'Essencial') {
+        why = 'Pra quem faz 1 publicação por mês e só trabalha com propostas pagas, o Essencial cobre exatamente isso, pelo menor valor.';
+      } else if (plan === 'Premium') {
+        why = permutaFloor
+          ? 'Como você quer oferecer permuta, precisa de pelo menos o Premium, que libera até 1 publicação em permuta por mês.'
+          : 'O Premium cobre até 3 publicações por mês, com filtro de seleção de creators e permuta liberada.';
       } else {
-        plan = 'Gold'; why = 'Com 4 ou mais publicações por mês, o Gold é o que mais compensa: 5 publicações, até 2 permutas e destaque no mural.';
+        why = 'Com 4 ou mais publicações por mês e experiência com creators, o Gold é o que mais compensa: 5 publicações, até 2 permutas e destaque no mural.';
       }
       planQuiz.querySelector('[data-quiz-plan]').textContent = plan;
       planQuiz.querySelector('[data-quiz-why]').textContent = why;
@@ -1605,10 +1633,16 @@
       b.addEventListener('click', function(){ quizAnswers.posts = b.dataset.posts; quizShowStep(2); });
     });
     planQuiz.querySelectorAll('[data-permuta]').forEach(function(b){
-      b.addEventListener('click', function(){ quizAnswers.permuta = b.dataset.permuta; quizFinish(); });
+      b.addEventListener('click', function(){ quizAnswers.permuta = b.dataset.permuta; quizShowStep(3); });
+    });
+    planQuiz.querySelectorAll('[data-experiencia]').forEach(function(b){
+      b.addEventListener('click', function(){ quizAnswers.experiencia = b.dataset.experiencia; quizShowStep(4); });
+    });
+    planQuiz.querySelectorAll('[data-tempo]').forEach(function(b){
+      b.addEventListener('click', function(){ quizAnswers.tempo = b.dataset.tempo; quizFinish(); });
     });
     planQuiz.querySelectorAll('[data-quiz-back]').forEach(function(b){
-      b.addEventListener('click', function(){ quizShowStep(1); });
+      b.addEventListener('click', function(){ quizShowStep(b.dataset.quizBack); });
     });
     planQuiz.querySelectorAll('[data-quiz-restart]').forEach(function(b){
       b.addEventListener('click', function(){ quizAnswers = {}; quizShowStep(1); });
