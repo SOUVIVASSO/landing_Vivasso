@@ -73,11 +73,25 @@
   .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad)}
 
   /* ---------- NAV ---------- */
+  .sticky-head{position:sticky;top:0;z-index:40}
   .nav{
-    position:sticky;top:0;z-index:40;
     background:rgba(20,14,27,.72);backdrop-filter:blur(14px) saturate(140%);
     border-bottom:1px solid rgba(255,255,255,.08);
   }
+  .countdown-bar{
+    background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;
+    gap:10px;padding:8px 40px;font-size:12.5px;font-weight:700;text-align:center;position:relative;
+    flex-wrap:wrap;row-gap:2px;
+  }
+  .countdown-bar a{color:#fff;text-decoration:underline;white-space:nowrap}
+  .countdown-bar-time{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .countdown-bar-close{position:absolute;right:10px;top:50%;translate:0 -50%;width:22px;height:22px;
+    display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);border:none;
+    border-radius:50%;color:#fff;cursor:pointer;flex-shrink:0}
+  .countdown-bar-close svg{width:11px;height:11px;stroke:#fff}
+  .countdown-bar[hidden]{display:none}
+  @media (max-width:640px){.countdown-bar{font-size:11px;gap:6px;padding:7px 34px}
+    .countdown-bar-cta{display:none}}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:14px}
   .brand{display:flex;align-items:center;text-decoration:none}
   .brand img{height:42px;width:auto;display:block;opacity:0;transition:opacity .3s ease}
@@ -515,7 +529,14 @@
 </head>
 <body>
 
-<nav class="nav">
+<div class="sticky-head">
+  <div class="countdown-bar" id="countdown-bar">
+    <span>Oferta de lançamento termina em</span>
+    <span class="countdown-bar-time" id="countdown-bar-time">--d --h --m --s</span>
+    <a href="#oferta" class="countdown-bar-cta">Quero garantir minha vaga</a>
+    <button type="button" class="countdown-bar-close" id="countdown-bar-close" aria-label="Fechar aviso"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <nav class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="#hero">
       <img src="assets/vivasso-logo.png" alt="Vivasso Creators">
@@ -541,7 +562,8 @@
     <a href="#planos">Planos</a>
     <a href="#faq">FAQ</a>
   </div>
-</nav>
+  </nav>
+</div>
 
 <header class="hero" id="hero">
   <div class="wrap hero-inner">
@@ -1117,24 +1139,41 @@
 (function(){
   var OFFER_END = new Date('2026-10-31T23:59:59-03:00').getTime();
   var wrap = document.getElementById('offer-countdown');
-  if(!wrap) return;
   var elD = document.getElementById('cd-days');
   var elH = document.getElementById('cd-hours');
   var elM = document.getElementById('cd-mins');
   var elS = document.getElementById('cd-secs');
+
+  var bar = document.getElementById('countdown-bar');
+  var barTime = document.getElementById('countdown-bar-time');
+  var barClose = document.getElementById('countdown-bar-close');
+  if (barClose && bar) {
+    barClose.addEventListener('click', function(){ bar.hidden = true; });
+  }
+
   var timer;
   function pad(n){ return String(n).padStart(2,'0'); }
   function tick(){
     var diff = OFFER_END - Date.now();
     if(diff <= 0){
-      wrap.innerHTML = '<div class="countdown-ended">Oferta de lançamento encerrada</div>';
+      if (wrap) wrap.innerHTML = '<div class="countdown-ended">Oferta de lançamento encerrada</div>';
+      if (bar) bar.hidden = true;
       clearInterval(timer);
       return;
     }
-    elD.textContent = pad(Math.floor(diff / 86400000));
-    elH.textContent = pad(Math.floor((diff % 86400000) / 3600000));
-    elM.textContent = pad(Math.floor((diff % 3600000) / 60000));
-    elS.textContent = pad(Math.floor((diff % 60000) / 1000));
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    if (wrap) {
+      elD.textContent = pad(d);
+      elH.textContent = pad(h);
+      elM.textContent = pad(m);
+      elS.textContent = pad(s);
+    }
+    if (barTime) {
+      barTime.textContent = d + 'd ' + pad(h) + 'h ' + pad(m) + 'm ' + pad(s) + 's';
+    }
   }
   tick();
   timer = setInterval(tick, 1000);
