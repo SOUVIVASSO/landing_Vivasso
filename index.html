@@ -460,6 +460,10 @@
   .chat-msg.bot{align-self:flex-start;background:var(--line-dark);color:var(--ink-on-dark)}
   .chat-msg.bot a{color:var(--ink-on-dark);text-decoration:underline}
   .chat-msg.user{align-self:flex-end;background:var(--grad);color:#fff}
+  .chat-action-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;
+    font-size:12.5px;font-weight:700;color:#fff;background:var(--grad);text-decoration:none;
+    padding:9px 16px;border-radius:999px;margin-top:-2px}
+  .chat-action-btn:hover{filter:brightness(1.08)}
 
   .chat-quick{display:flex;flex-wrap:wrap;gap:6px;padding:2px 14px 12px;flex-shrink:0}
   .chat-quick button{font-size:11.5px;font-weight:600;padding:6px 11px;border-radius:999px;
@@ -1574,6 +1578,32 @@
     return esc;
   }
 
+  var CHAT_ACTIONS = {
+    cadastro: { label: 'Fazer pré-cadastro', href: '#contato' },
+    funciona: { label: 'Ver como funciona', href: '#como-funciona' },
+    planos: { label: 'Ver planos', href: '#planos' },
+    whatsapp: { label: 'Falar no WhatsApp', href: 'https://wa.me/558597712114?text=' + encodeURIComponent('Olá! Vim pela landing page da Vivasso Creators e queria saber mais.'), target: '_blank' }
+  };
+
+  function extractChatAction(text){
+    var m = text.match(/\[\[BOTAO:(\w+)\]\]\s*$/i);
+    if (!m) return { clean: text, action: null };
+    var key = m[1].toLowerCase();
+    var clean = text.slice(0, m.index).trim();
+    return { clean: clean, action: CHAT_ACTIONS[key] || null };
+  }
+
+  function addChatActionBtn(action){
+    var a = document.createElement('a');
+    a.className = 'chat-action-btn';
+    a.href = action.href;
+    a.textContent = action.label;
+    if (action.target) { a.target = action.target; a.rel = 'noopener'; }
+    a.addEventListener('click', function(){ chatPanel.setAttribute('data-open', 'false'); });
+    chatBody.appendChild(a);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
   async function askBot(q){
     if(!q || !q.trim()) return;
     if(chatQuick) chatQuick.style.display = 'none';
@@ -1593,7 +1623,9 @@
       var data = await res.json();
       if(!data || !data.reply) throw new Error('no reply');
       typing.remove();
-      addChatMsg(linkifyChatReply(data.reply), 'bot');
+      var parsed = extractChatAction(data.reply);
+      addChatMsg(linkifyChatReply(parsed.clean), 'bot');
+      if (parsed.action) addChatActionBtn(parsed.action);
       chatHistory.push({role:'user', content:q});
       chatHistory.push({role:'assistant', content:data.reply});
     } catch(err){
