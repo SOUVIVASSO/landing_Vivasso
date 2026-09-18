@@ -89,5 +89,23 @@
   </div>
 </footer>
 
+<div class="cookie-notice" id="cookie-notice">
+  <p>Este site usa cookies de analytics pra entender como você navega e melhorar sua experiência. Ao continuar, você concorda com nossa <a href="../index.html#privacidade">Política de Privacidade</a>.</p>
+  <button type="button" id="cookie-ok">Entendi</button>
+</div>
+<script>
+(function(){
+  var notice = document.getElementById('cookie-notice');
+  var ok = document.getElementById('cookie-ok');
+  var already = false;
+  try { already = localStorage.getItem('vv_cookie_ok') === '1'; } catch(e){}
+  if (already) { notice.style.display = 'none'; }
+  ok.addEventListener('click', function(){
+    notice.style.display = 'none';
+    try { localStorage.setItem('vv_cookie_ok', '1'); } catch(e){}
+  });
+})();
+</script>
+
 </body>
 </html>
