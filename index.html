@@ -1628,6 +1628,7 @@
     if (!m) return { clean: text, action: null };
     var key = m[1].toLowerCase();
     var clean = text.slice(0, m.index).trim();
+    if (/\?\s*$/.test(clean)) return { clean: clean, action: null };
     return { clean: clean, action: CHAT_ACTIONS[key] || null };
   }
 
