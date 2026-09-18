@@ -80,17 +80,12 @@
   }
   .countdown-bar{
     background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;
-    gap:10px;padding:8px 40px;font-size:12.5px;font-weight:700;text-align:center;position:relative;
+    gap:10px;padding:8px 16px;font-size:12.5px;font-weight:700;text-align:center;position:relative;
     flex-wrap:wrap;row-gap:2px;
   }
   .countdown-bar a{color:#fff;text-decoration:underline;white-space:nowrap}
   .countdown-bar-time{font-variant-numeric:tabular-nums;white-space:nowrap}
-  .countdown-bar-close{position:absolute;right:10px;top:50%;translate:0 -50%;width:22px;height:22px;
-    display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);border:none;
-    border-radius:50%;color:#fff;cursor:pointer;flex-shrink:0}
-  .countdown-bar-close svg{width:11px;height:11px;stroke:#fff}
-  .countdown-bar[hidden]{display:none}
-  @media (max-width:640px){.countdown-bar{font-size:11px;gap:6px;padding:7px 34px}
+  @media (max-width:640px){.countdown-bar{font-size:11px;gap:6px;padding:7px 16px}
     .countdown-bar-cta{display:none}}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:14px}
   .brand{display:flex;align-items:center;text-decoration:none}
@@ -534,7 +529,6 @@
     <span>Oferta de lançamento termina em</span>
     <span class="countdown-bar-time" id="countdown-bar-time">--d --h --m --s</span>
     <a href="#oferta" class="countdown-bar-cta">Quero garantir minha vaga</a>
-    <button type="button" class="countdown-bar-close" id="countdown-bar-close" aria-label="Fechar aviso"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
   <nav class="nav">
   <div class="wrap nav-inner">
@@ -1039,11 +1033,11 @@
         <summary>Descubra o plano ideal para você.<svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
         <div class="mini-tool-body">
           <div class="quiz-step" data-quiz-step="1">
-            <p class="quiz-q">Quantas publicações por mês você pretende fazer?</p>
+            <p class="quiz-q">Qual é o seu objetivo com a Vivasso Creators?</p>
             <div class="quiz-opts">
-              <button type="button" data-posts="1">1</button>
-              <button type="button" data-posts="2-3">2 a 3</button>
-              <button type="button" data-posts="4+">4 ou mais</button>
+              <button type="button" data-objetivo="baixo">Testar aos poucos, sem compromisso grande</button>
+              <button type="button" data-objetivo="medio">Rodar campanhas com uma certa frequência</button>
+              <button type="button" data-objetivo="alto">Ter presença forte e constante com creators</button>
             </div>
           </div>
           <div class="quiz-step" data-quiz-step="2" hidden>
@@ -1055,9 +1049,9 @@
             <button type="button" class="quiz-back" data-quiz-back="1">← Voltar</button>
           </div>
           <div class="quiz-step" data-quiz-step="3" hidden>
-            <p class="quiz-q">Sua marca já pagou por publicidade com creators ou influenciadores antes?</p>
+            <p class="quiz-q">Sua marca já investiu em creators antes?</p>
             <div class="quiz-opts">
-              <button type="button" data-experiencia="sim">Sim, já pagou</button>
+              <button type="button" data-experiencia="sim">Sim, já investiu</button>
               <button type="button" data-experiencia="nao">Não, seria a primeira vez</button>
             </div>
             <button type="button" class="quiz-back" data-quiz-back="2">← Voltar</button>
@@ -1146,10 +1140,6 @@
 
   var bar = document.getElementById('countdown-bar');
   var barTime = document.getElementById('countdown-bar-time');
-  var barClose = document.getElementById('countdown-bar-close');
-  if (barClose && bar) {
-    barClose.addEventListener('click', function(){ bar.hidden = true; });
-  }
 
   var timer;
   function pad(n){ return String(n).padStart(2,'0'); }
@@ -1640,26 +1630,31 @@
       quizResult.hidden = true;
     }
     function quizFinish(){
-      var tierByPosts = {'1':0, '2-3':1, '4+':2};
-      var tier = tierByPosts[quizAnswers.posts];
+      var objPts = {'baixo':0, 'medio':1, 'alto':2}[quizAnswers.objetivo];
+      var permutaPts = quizAnswers.permuta === 'sim' ? 1 : 0;
+      var expPts = quizAnswers.experiencia === 'sim' ? 1 : 0;
+      var tempoPts = quizAnswers.tempo === 'comecando' ? 0 : 1;
+      var score = objPts + permutaPts + expPts + tempoPts;
+
+      var tier;
+      if (score <= 1) { tier = 0; }
+      else if (score <= 3) { tier = 1; }
+      else { tier = 2; }
+
       var permutaFloor = false;
       if (quizAnswers.permuta === 'sim' && tier < 1) { tier = 1; permutaFloor = true; }
-      var iniciante = (quizAnswers.tempo === 'comecando' && quizAnswers.experiencia === 'nao');
-      var downgraded = false;
-      if (iniciante && tier > 0) { tier -= 1; downgraded = true; }
+
       var plans = ['Essencial', 'Premium', 'Gold'];
       var plan = plans[tier];
       var why;
-      if (downgraded) {
-        why = 'Como sua empresa está começando agora e essa seria a primeira vez pagando por creators, o ' + plan + ' é o ponto de partida mais seguro. Dá pra fazer upgrade quando quiser, sem perder nada.';
+      if (permutaFloor) {
+        why = 'Como você quer oferecer permuta, o plano mínimo é o Premium, que já libera até 1 publicação em permuta por mês.';
       } else if (plan === 'Essencial') {
-        why = 'Pra quem faz 1 publicação por mês e só trabalha com propostas pagas, o Essencial cobre exatamente isso, pelo menor valor.';
+        why = 'Pelo conjunto das suas respostas, o Essencial é o ponto de partida ideal: um jeito enxuto de testar a Vivasso Creators sem compromisso grande.';
       } else if (plan === 'Premium') {
-        why = permutaFloor
-          ? 'Como você quer oferecer permuta, precisa de pelo menos o Premium, que libera até 1 publicação em permuta por mês.'
-          : 'O Premium cobre até 3 publicações por mês, com filtro de seleção de creators e permuta liberada.';
+        why = 'Pelo conjunto das suas respostas, o Premium é o mais equilibrado: até 3 publicações por mês, com permuta liberada e filtro de seleção de creators.';
       } else {
-        why = 'Com 4 ou mais publicações por mês e experiência com creators, o Gold é o que mais compensa: 5 publicações, até 2 permutas e destaque no mural.';
+        why = 'Pelo conjunto das suas respostas, o Gold é o que mais aproveita: até 5 publicações por mês, até 2 permutas e destaque no mural.';
       }
       planQuiz.querySelector('[data-quiz-plan]').textContent = plan;
       planQuiz.querySelector('[data-quiz-why]').textContent = why;
@@ -1668,8 +1663,8 @@
       quizSteps.forEach(function(s){ s.hidden = true; });
       quizResult.hidden = false;
     }
-    planQuiz.querySelectorAll('[data-posts]').forEach(function(b){
-      b.addEventListener('click', function(){ quizAnswers.posts = b.dataset.posts; quizShowStep(2); });
+    planQuiz.querySelectorAll('[data-objetivo]').forEach(function(b){
+      b.addEventListener('click', function(){ quizAnswers.objetivo = b.dataset.objetivo; quizShowStep(2); });
     });
     planQuiz.querySelectorAll('[data-permuta]').forEach(function(b){
       b.addEventListener('click', function(){ quizAnswers.permuta = b.dataset.permuta; quizShowStep(3); });
