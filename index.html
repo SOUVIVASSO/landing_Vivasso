@@ -1308,7 +1308,7 @@
       </details>
       <details class="faq-item">
         <summary>Quando minha assinatura renova?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <p class="a">Todo dia 1º do mês, independente do dia em que você assinou. Assim fica mais organizado pra todo mundo.</p>
+        <p class="a">Todo mês, na mesma data em que você assinou. Por exemplo, se você assinar no dia 12, a próxima cobrança acontece no dia 12 do mês seguinte, e assim por diante — sem cobrança proporcional.</p>
       </details>
       <details class="faq-item">
         <summary>A Vivasso Creators funciona em qualquer cidade?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
@@ -1365,6 +1365,10 @@
         <label for="whats">WhatsApp</label>
         <input id="whats" name="whats" type="tel" placeholder="(00) 00000-0000" autocomplete="tel" class="clarity-mask">
       </div>
+      <div class="f-row">
+        <label for="cidade">Cidade</label>
+        <input id="cidade" name="cidade" type="text" placeholder="Ex.: Fortaleza/CE" autocomplete="address-level2" class="clarity-mask">
+      </div>
       <div class="f-row" id="empresa-row">
         <label for="empresa">Nome da marca / @ do Instagram</label>
         <input id="empresa" name="empresa" type="text" placeholder="Ex.: Loja Aurora / @lojaaurora" class="clarity-mask">
@@ -1401,7 +1405,7 @@
     <div class="faq-list" style="border-top-color:var(--line-dark)">
       <details class="faq-item" style="border-bottom-color:var(--line-dark)">
         <summary style="color:var(--ink-on-dark)">Política de Privacidade<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <p class="a" style="color:var(--ink-on-dark-soft)">Ao preencher o formulário desta página, você concorda com a coleta do seu nome, e-mail, WhatsApp e @ de rede social, usados exclusivamente para (1) fazer a triagem de perfil e (2) entrar em contato sobre os próximos passos na Vivasso Creators. Não vendemos nem compartilhamos seus dados com terceiros para fins de marketing. Você pode pedir a exclusão dos seus dados a qualquer momento, escrevendo para souvivasso@gmail.com, conforme a Lei Geral de Proteção de Dados (LGPD).</p>
+        <p class="a" style="color:var(--ink-on-dark-soft)">Ao preencher o formulário desta página, você concorda com a coleta do seu nome, e-mail, WhatsApp, cidade e @ de rede social, usados exclusivamente para (1) fazer a triagem de perfil e (2) entrar em contato sobre os próximos passos na Vivasso Creators. Não vendemos nem compartilhamos seus dados com terceiros para fins de marketing. Você pode pedir a exclusão dos seus dados a qualquer momento, escrevendo para souvivasso@gmail.com, conforme a Lei Geral de Proteção de Dados (LGPD).</p>
         <p class="a" style="color:var(--ink-on-dark-soft);margin-top:14px">Este site também usa cookies de analytics (Microsoft Clarity) para entender como as pessoas navegam pela página, como tempo de visita e cliques, e assim melhorar a experiência. Os campos do formulário são mascarados e não ficam visíveis nessas gravações. Ao continuar navegando, você concorda com o uso desses cookies.</p>
       </details>
     </div>
@@ -1568,7 +1572,7 @@
     { kw: ['mais publicacoes','fazer upgrade','publicacao avulsa','preciso de mais'],
       a: 'Dá pra fazer upgrade de plano a qualquer momento dentro do mês, ou comprar uma publicação avulsa sem precisar trocar de plano.' },
     { kw: ['renova','renovacao','dia da cobranca','quando cobra'],
-      a: 'A assinatura renova todo dia 1º do mês, independente do dia em que você assinou.' },
+      a: 'A assinatura renova todo mês, na mesma data em que você assinou. Sem cobrança proporcional: se você assinar dia 12, a próxima cobrança é sempre no dia 12.' },
     { kw: ['cidade','fortaleza','regiao','onde funciona','minha cidade','atende em','tem no meu estado'],
       a: 'Estamos começando em Fortaleza (CE), com planos de expandir conforme a plataforma cresce.' },
     { kw: ['prazo da oferta','oferta de lancamento','ate quando vale','data de lancamento','quando lanca','quando vai lancar'],
@@ -1911,7 +1915,8 @@
     empresa: 'entry.1306414581',
     rede: 'entry.1366031311',
     plano: 'entry.1052051600',
-    msg: 'entry.478711782'
+    msg: 'entry.478711782',
+    cidade: 'entry.SUBSTITUIR_PELO_ID_DA_CIDADE'
   };
 
   var form = document.getElementById('lead-form');
@@ -1927,6 +1932,7 @@
     }
     var tipo = tipoHidden.value;
     var whats = document.getElementById('whats').value.trim();
+    var cidade = document.getElementById('cidade').value.trim();
     var empresa = document.getElementById('empresa').value.trim();
     var rede = document.getElementById('rede').value.trim();
     var msg = document.getElementById('msg').value.trim();
@@ -1937,6 +1943,7 @@
     data.append(GFORM_ENTRIES.nome, nome);
     data.append(GFORM_ENTRIES.email, email);
     data.append(GFORM_ENTRIES.whats, whats);
+    data.append(GFORM_ENTRIES.cidade, cidade);
     data.append(GFORM_ENTRIES.empresa, empresa);
     data.append(GFORM_ENTRIES.rede, rede);
     data.append(GFORM_ENTRIES.plano, tipo === 'marca' ? plano : '');
