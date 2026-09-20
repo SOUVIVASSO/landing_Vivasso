@@ -1466,13 +1466,25 @@
 (function(){
   var navEl = document.querySelector('.nav');
   var heroLogo = document.querySelector('.hero-logo');
-  if(navEl && heroLogo && 'IntersectionObserver' in window){
-    var logoObserver = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        navEl.setAttribute('data-scrolled', entry.isIntersecting ? 'false' : 'true');
-      });
-    }, {threshold: 0});
-    logoObserver.observe(heroLogo);
+  var stickyHead = document.querySelector('.sticky-head');
+  if(navEl && heroLogo && stickyHead && 'IntersectionObserver' in window){
+    var logoObserver;
+    function setupLogoObserver(){
+      if(logoObserver) logoObserver.disconnect();
+      var headH = Math.round(stickyHead.getBoundingClientRect().height);
+      logoObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          navEl.setAttribute('data-scrolled', entry.isIntersecting ? 'false' : 'true');
+        });
+      }, {threshold: 0, rootMargin: '-' + headH + 'px 0px 0px 0px'});
+      logoObserver.observe(heroLogo);
+    }
+    setupLogoObserver();
+    if('ResizeObserver' in window){
+      new ResizeObserver(setupLogoObserver).observe(stickyHead);
+    } else {
+      window.addEventListener('resize', setupLogoObserver);
+    }
   } else if(navEl){
     navEl.setAttribute('data-scrolled', 'true');
   }
