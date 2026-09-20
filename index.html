@@ -584,7 +584,10 @@
   footer{background:var(--bg-dark);color:var(--ink-on-dark-soft);padding-block:44px;
     border-top:1px solid var(--line-dark)}
   .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:13px}
-  .foot-brand{display:flex;align-items:center;gap:9px}
+  .foot-brand{display:flex;align-items:center;gap:14px}
+  .foot-social{display:flex;color:var(--ink-on-dark-soft);transition:color .15s ease}
+  .foot-social:hover{color:var(--ink-on-dark)}
+  .foot-social svg{width:20px;height:20px}
 
 </style>
 
@@ -1449,6 +1452,9 @@
   <div class="wrap foot-inner">
     <div class="foot-brand">
       <img src="assets/vivasso-logo.webp" alt="Vivasso Creators" width="300" height="114">
+      <a href="https://instagram.com/souvivasso" target="_blank" rel="noopener" aria-label="Instagram da Vivasso Creators" class="foot-social">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+      </a>
     </div>
     <span>© 2026 Vivasso Creators, feito no Brasil para creators e marcas brasileiras. <a href="#privacidade" style="text-decoration:underline">Política de Privacidade</a></span>
   </div>
