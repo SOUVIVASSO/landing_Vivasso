@@ -86,7 +86,8 @@ footer{background:var(--bg-dark);padding-block:28px;margin-top:40px}
 .article-body h2{font-size:22px;font-weight:700;margin-top:38px}
 .article-body h3{font-size:18px;font-weight:700;margin-top:28px}
 .article-body p{margin-top:16px;font-size:16px;color:var(--ink-soft);line-height:1.7}
-.article-body ul{margin:16px 0 0;padding-left:20px;color:var(--ink-soft);font-size:16px;line-height:1.7}
+.article-body ul,.article-body ol{margin:16px 0 0;padding-left:20px;color:var(--ink-soft);font-size:16px;line-height:1.7}
+.article-body a{color:#6B3FD1;text-decoration:underline}
 .article-body li{margin-top:8px}
 .article-body li b{color:var(--ink)}
 .article-body strong{color:var(--ink)}
