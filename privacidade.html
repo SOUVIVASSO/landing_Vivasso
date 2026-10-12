@@ -16,7 +16,88 @@
 <meta name="twitter:description" content="Entenda como a Vivasso cuida dos seus dados pessoais e como você exerce seus direitos pela LGPD.">
 <meta name="twitter:image" content="https://creators.vivasso.com.br/assets/og-image.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjkxOCA0NzIgMjAxIDIwMSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJmZyIgeDE9IjkyMC44IiB5MT0iNTY1LjM5IiB4Mj0iMTA3MC40NyIgeTI9IjU2NS4zOSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGdyYWRpZW50VHJhbnNmb3JtPSJyb3RhdGUoNS41OCw5ODQuNzQsNzk3LjE0KSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmRlMzRjIi8+PHN0b3Agb2Zmc2V0PSIwLjUiIHN0b3AtY29sb3I9IiNmZGIxNDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZDZhMWEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBmaWxsPSJ1cmwoI2ZnKSIgZD0ibSAxMDA4LjA2MTYsNjMyLjQ5Mzk4IGMgLTYuMDMxNSwtMS4xMjA3NiAyLjE3MDIsLTQwLjA5OTc3IC05Ljg3MzczLC01NS4wNDAyIC0xMi4wNDM5NywtMTQuOTQwNDIgLTU0LjY0NDExLC0yMi4xNjkxOSAtNTMuNjAxNCwtMjYuODg2NDUgMS4wNDI3MSwtNC43MTcyNiA1MS41NTUzMiw1LjU5NTYgNjIuODIxOTMsLTAuMzcwNCAxMS4yNjY2LC01Ljk2NTk4IDIwLjUwNDQsLTQ3LjYzMzE2IDI1LjU4NjMsLTQ3LjEzMTk3IDUuMDgxOCwwLjUwMTM4IC01LjI5NzIsNDMuNDY1NzIgMTEuNzM0Myw1OC40MzkzMSAxNy4wMzE1LDE0Ljk3MzU5IDQ4LjExODksMTYuOTYyMTQgNDYuOTYzMywyMi40MjMzMiAtMS4xNTU2LDUuNDYxMTggLTQxLjgxMDEsLTYuMTcyMTYgLTU1LjM5NjIsLTAuMzQxOCAtMTMuNTg2Miw1LjgzMDM1IC0yMi4yMDMsNTAuMDI4OTQgLTI4LjIzNDUsNDguOTA4MTkgeiIvPjwvc3ZnPgo=">
-<link rel="stylesheet" href="blog/blog.css">
+<style>
+  @font-face{font-family:'Unbounded';font-style:normal;font-weight:500 800;font-display:swap;src:url('assets/fonts/unbounded-variable.woff2') format('woff2')}
+  @font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url('assets/fonts/plus-jakarta-sans-variable.woff2') format('woff2')}
+  @font-face{font-family:'Plus Jakarta Sans';font-style:italic;font-weight:500;font-display:swap;src:url('assets/fonts/plus-jakarta-sans-italic-variable.woff2') format('woff2')}
+
+  :root{
+    --bg:#FBF6F0;--bg-panel:#F4E9DF;--ink:#1F1524;--ink-soft:#5C4F60;--line:#E4D5C6;
+    --bg-dark:#140E1B;--bg-dark-panel:#1D1526;--ink-on-dark:#F7F0E8;--ink-on-dark-soft:#B6A9C0;--line-dark:#332942;
+    --blue:#4E7FE0;--violet:#8253F0;--magenta:#E3529A;--amber:#FFB238;--violet-on-light:#6B3FD1;
+    --grad:linear-gradient(108deg,var(--blue) 0%,var(--violet) 32%,var(--magenta) 63%,var(--amber) 100%);
+    --font-display:'Unbounded',ui-sans-serif,system-ui,sans-serif;
+    --font-body:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  img,svg{max-width:100%;display:block}
+  a{color:inherit}
+  h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.12;letter-spacing:-.01em}
+  p{margin:0}
+  ::selection{background:var(--violet);color:#fff}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  .wrap{max-width:1180px;margin:0 auto;padding-inline:24px}
+  @media (max-width:640px){.wrap{padding-inline:18px}}
+  .eyebrow{font-family:var(--font-body);font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px}
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad)}
+
+  /* ---------- NAV (igual a home) ---------- */
+  .sticky-head{position:sticky;top:0;z-index:40}
+  .nav{background:rgba(20,14,27,.88);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid rgba(255,255,255,.08)}
+  .countdown-bar{background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 16px;font-size:12.5px;font-weight:700;text-align:center;position:relative;flex-wrap:wrap;row-gap:2px}
+  .countdown-bar a{color:#fff;text-decoration:underline;white-space:nowrap}
+  .countdown-bar-time{font-variant-numeric:tabular-nums;white-space:nowrap}
+  @media (max-width:640px){.countdown-bar{font-size:11px;gap:6px;padding:7px 16px}.countdown-bar-cta{display:none}}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:14px}
+  .brand{display:flex;align-items:center;text-decoration:none}
+  .brand img{height:42px;width:auto;display:block;opacity:1}
+  .foot-brand img{height:30px;width:auto;display:block}
+  .nav-links{display:flex;gap:28px;font-size:14.5px;font-weight:600;color:#DCD3E6}
+  .nav-links a{text-decoration:none;transition:color .15s}
+  .nav-links a:hover{color:var(--ink-on-dark)}
+  .nav-right{display:flex;align-items:center;gap:10px}
+  .nav-cta{font-family:var(--font-body);font-weight:700;font-size:14px;color:#fff;background:var(--grad);padding:10px 18px;border-radius:999px;text-decoration:none;white-space:nowrap}
+  .nav-burger{display:none;background:transparent;border:1.5px solid rgba(255,255,255,.28);border-radius:10px;width:38px;height:38px;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-on-dark);flex-shrink:0}
+  .nav-burger svg{width:18px;height:18px}
+  .nav-mobile{display:none;flex-direction:column;padding:4px 24px 14px;gap:0;border-top:1px solid rgba(255,255,255,.08)}
+  .nav-mobile a{padding:13px 2px;font-size:15px;font-weight:600;color:var(--ink-on-dark-soft);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.07)}
+  .nav-mobile a:last-child{border-bottom:none}
+  @media (max-width:760px){.nav-links{display:none}.nav-burger{display:flex}.nav-mobile[data-open="true"]{display:flex}}
+  @media (max-width:520px){.brand img{height:32px}.foot-brand img{height:24px}}
+  @media (max-width:400px){.nav-cta{display:none}}
+
+  /* ---------- PAGINA LEGAL ---------- */
+  .page-head{background:var(--bg-dark);color:var(--ink-on-dark);padding-block:72px 56px}
+  .page-head h1{font-size:clamp(28px,4vw,44px);margin-top:14px;max-width:820px}
+  .page-head .lede{margin-top:14px;font-size:16.5px;color:var(--ink-on-dark-soft)}
+  .legal-main{background:var(--bg);color:var(--ink);padding-block:64px 88px}
+  .legal{max-width:760px}
+  .legal h2{font-size:clamp(19px,2.4vw,23px);font-weight:700;margin-top:44px}
+  .legal h2:first-child{margin-top:0}
+  .legal p{margin-top:16px;font-size:16px;color:var(--ink-soft);line-height:1.7}
+  .legal ul,.legal ol{margin:16px 0 0;padding-left:22px;color:var(--ink-soft);font-size:16px;line-height:1.7}
+  .legal li{margin-top:8px}
+  .legal strong{color:var(--ink)}
+  .legal a{color:var(--violet-on-light);text-decoration:underline}
+  .legal-back{display:inline-flex;margin-top:40px;font-size:14px;font-weight:700;color:var(--violet-on-light);text-decoration:none}
+  .legal-back:hover{text-decoration:underline}
+  @media (max-width:640px){.page-head{padding-block:48px 40px}.legal-main{padding-block:44px 64px}}
+
+  /* ---------- COOKIES + RODAPE (igual a home) ---------- */
+  .cookie-notice{position:fixed;bottom:22px;left:22px;z-index:55;max-width:300px;background:var(--bg-dark-panel);border:1px solid var(--line-dark);border-radius:14px;padding:16px 18px;box-shadow:0 15px 40px -15px rgba(0,0,0,.5)}
+  .cookie-notice p{font-size:12px;color:var(--ink-on-dark-soft);line-height:1.5;margin:0}
+  .cookie-notice p a{color:var(--ink-on-dark);text-decoration:underline}
+  .cookie-notice button{margin-top:10px;font-size:12.5px;font-weight:700;color:#fff;background:var(--grad);border:none;padding:8px 16px;border-radius:999px;cursor:pointer}
+  @media (max-width:480px){.cookie-notice{left:12px;right:12px;bottom:12px;max-width:none}}
+  footer{background:var(--bg-dark);color:var(--ink-on-dark-soft);padding-block:44px;border-top:1px solid var(--line-dark)}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:13px}
+  .foot-brand{display:flex;align-items:center;gap:14px}
+  .foot-social{display:flex;color:var(--ink-on-dark-soft);transition:color .15s ease}
+  .foot-social:hover{color:var(--ink-on-dark)}
+  .foot-social svg{width:20px;height:20px}
+</style>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -26,31 +107,54 @@
 </script>
 </head>
 <body>
-
-<nav class="nav">
+<div class="sticky-head">
+  <div class="countdown-bar" id="countdown-bar">
+    <span>Oferta de lançamento termina em</span>
+    <span class="countdown-bar-time" id="countdown-bar-time">--d --h --m --s</span>
+    <a href="index.html#oferta" class="countdown-bar-cta">Quero garantir minha vaga</a>
+  </div>
+  <nav class="nav" data-scrolled="true">
   <div class="wrap nav-inner">
-    <a class="brand" href="index.html"><img src="assets/vivasso-logo.webp" alt="Vivasso Creators" width="300" height="114"></a>
+    <a class="brand" href="index.html">
+      <img src="assets/vivasso-logo.webp" alt="Vivasso Creators" width="300" height="114">
+    </a>
     <div class="nav-links">
       <a href="index.html#sobre">O que é</a>
       <a href="index.html#como-funciona">Como funciona</a>
+      <a href="index.html#app">Dentro do app</a>
       <a href="index.html#planos">Planos</a>
       <a href="index.html#faq">FAQ</a>
       <a href="blog.html">Blog</a>
     </div>
-    <a class="nav-cta" href="index.html#contato">Quero participar</a>
+    <div class="nav-right">
+      <a class="nav-cta" href="index.html#contato">Quero participar</a>
+      <button class="nav-burger" id="nav-burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-mobile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
   </div>
-</nav>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="index.html#sobre">O que é</a>
+    <a href="index.html#como-funciona">Como funciona</a>
+    <a href="index.html#app">Dentro do app</a>
+    <a href="index.html#planos">Planos</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="blog.html">Blog</a>
+  </div>
+  </nav>
+</div>
 
-<header class="article-hero">
+<header class="page-head">
   <div class="wrap">
-    <span class="eyebrow tag">Legal</span>
+    <span class="eyebrow" style="color:var(--amber)">Legal</span>
     <h1>Política de Privacidade da Vivasso</h1>
-    <p class="meta">Última atualização: 12 de outubro de 2026</p>
+    <p class="lede">Última atualização: 12 de outubro de 2026</p>
   </div>
 </header>
 
-<div class="wrap">
-  <main class="article-body">
+<main class="legal-main">
+  <div class="wrap">
+    <div class="legal">
     <p>Esta política explica como a Vivasso cuida dos seus dados pessoais. Ela vale para creators, marcas e agências que usam o aplicativo e o site da Vivasso.</p>
 
     <h2>1. Quem somos</h2>
@@ -140,14 +244,20 @@
     <p>Dúvidas sobre esta política ou sobre seus dados: <a href="mailto:info@vivasso.com.br">info@vivasso.com.br</a></p>
     <p>Encarregado pelo tratamento de dados (DPO): <a href="mailto:info@vivasso.com.br">info@vivasso.com.br</a></p>
 
-    <a class="back-link" href="index.html" style="margin-top:32px;display:inline-flex">← Voltar pro início</a>
-  </main>
-</div>
+    <a class="legal-back" href="index.html">← Voltar pro início</a>
+  </div>
+  </div>
+</main>
 
 <footer>
   <div class="wrap foot-inner">
-    <div class="foot-brand"><img src="assets/vivasso-logo.webp" alt="Vivasso Creators" width="300" height="114"></div>
-    <span>© 2026 Vivasso Creators, feito no Brasil para creators e marcas brasileiras. <a href="privacidade.html">Política de Privacidade</a></span>
+    <div class="foot-brand">
+      <img src="assets/vivasso-logo.webp" alt="Vivasso Creators" width="300" height="114">
+      <a href="https://instagram.com/souvivasso" target="_blank" rel="noopener" aria-label="Instagram da Vivasso Creators" class="foot-social">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+      </a>
+    </div>
+    <span>© 2026 Vivasso Creators, feito no Brasil para creators e marcas brasileiras. <a href="privacidade.html" style="text-decoration:underline">Política de Privacidade</a> · Desenvolvido por <a href="https://provecto.app" target="_blank" rel="noopener" style="text-decoration:underline">Provecto</a></span>
   </div>
 </footer>
 
@@ -157,6 +267,39 @@
 </div>
 <script>
 (function(){
+  var OFFER_END = new Date('2026-10-31T23:59:59-03:00').getTime();
+  var bar = document.getElementById('countdown-bar');
+  var barTime = document.getElementById('countdown-bar-time');
+  var timer;
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    var diff = OFFER_END - Date.now();
+    if(diff <= 0){ if (bar) bar.hidden = true; clearInterval(timer); return; }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    if (barTime) barTime.textContent = d + 'd ' + pad(h) + 'h ' + pad(m) + 'm ' + pad(s) + 's';
+  }
+  tick();
+  timer = setInterval(tick, 1000);
+
+  var burger = document.getElementById('nav-burger');
+  var navMobile = document.getElementById('nav-mobile');
+  if(burger && navMobile){
+    burger.addEventListener('click', function(){
+      var open = navMobile.getAttribute('data-open') === 'true';
+      navMobile.setAttribute('data-open', open ? 'false' : 'true');
+      burger.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+    navMobile.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        navMobile.setAttribute('data-open', 'false');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   var notice = document.getElementById('cookie-notice');
   var ok = document.getElementById('cookie-ok');
   var already = false;
