@@ -123,6 +123,11 @@
   .nav-links a{text-decoration:none;transition:color .15s}
   .nav-links a:hover{color:var(--ink-on-dark)}
   .nav-right{display:flex;align-items:center;gap:10px}
+  .nav-login{
+    font-family:var(--font-body);font-weight:700;font-size:14px;color:#fff;text-decoration:none;
+    padding:9px 16px;border:1.5px solid rgba(255,255,255,.28);border-radius:999px;white-space:nowrap;
+  }
+  .nav-login:hover{border-color:rgba(255,255,255,.6)}
   .nav-cta{
     font-family:var(--font-body);font-weight:700;font-size:14px;color:#fff;
     background:var(--grad);padding:10px 18px;border-radius:999px;text-decoration:none;
@@ -150,6 +155,7 @@
   }
   @media (max-width:520px){.brand img{height:32px}.foot-brand img{height:24px}}
   @media (max-width:400px){.nav-cta{display:none}}
+  .gdados p{max-width:760px;font-size:16px;line-height:1.65}
 
   /* ---------- BUTTONS ---------- */
   .btn{
@@ -601,6 +607,7 @@
       <a href="blog.html">Blog</a>
     </div>
     <div class="nav-right">
+      <a class="nav-login" href="https://app.vivasso.com.br/#/login">Entrar</a>
       <a class="nav-cta" href="#contato">Quero participar</a>
       <button class="nav-burger" id="nav-burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-mobile">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -614,6 +621,7 @@
     <a href="#planos">Planos</a>
     <a href="#faq">FAQ</a>
     <a href="blog.html">Blog</a>
+    <a href="https://app.vivasso.com.br/#/login">Entrar</a>
   </div>
   </nav>
 </div>
@@ -1243,6 +1251,19 @@
   </div>
 </section>
 
+
+<section class="section-light gdados" id="google-youtube">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" style="color:var(--violet-on-light)">Seus dados</span>
+      <h2>Como usamos os dados do Google e do YouTube</h2>
+    </div>
+    <p>A creator pode conectar o próprio canal do YouTube. Pedimos acesso <strong>somente de leitura</strong> (escopo <code>youtube.readonly</code>) e só depois que ela toca em &ldquo;Conectar&rdquo; e autoriza na tela do Google.</p>
+    <p>Com esse acesso, lemos o nome e a foto do canal, o número de inscritos, de visualizações e de vídeos, e as métricas dos vídeos que a própria creator escolhe mostrar. Usamos isso para <strong>montar o perfil dela e mostrar às marcas</strong> o alcance real do canal. Não publicamos, não alteramos nem apagamos nada no canal. Não vendemos esses dados nem os usamos para publicidade.</p>
+    <p>A creator pode desconectar o YouTube a qualquer momento no app, ou revogar o acesso nas <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">permissões da Conta Google</a>.</p>
+    <p>O uso e a transferência a qualquer outro aplicativo, pela Vivasso, das informações recebidas das APIs do Google cumprem a <a href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes" target="_blank" rel="noopener">Política de Dados do Usuário dos Serviços de API do Google</a>, incluindo os requisitos de Uso Limitado. Detalhes na <a href="privacidade">Política de Privacidade</a>.</p>
+  </div>
+</section>
 
 <section class="section-light" id="faq">
   <div class="wrap">
